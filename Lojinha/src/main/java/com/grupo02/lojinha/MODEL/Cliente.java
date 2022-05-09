@@ -1,4 +1,4 @@
-package com.mycompany.lojinha.MODEL;
+package com.grupo02.lojinha.MODEL;
 
 /**
  *
@@ -9,9 +9,9 @@ public class Cliente {
     private String nomeCli;
     private String telefoneCli;
     private String celularCli;
-    private String CPF;
-    private String Email;
-    private EnderecoCliente endereco;
+    private String cpf;
+    private String email;
+    private Endereco endereco;
     
     public Cliente(){
     }
@@ -49,28 +49,22 @@ public class Cliente {
     }
 
     public String getCPF() {
-        return CPF;
+        return cpf;
     }
 
     public void setCPF(String CPF) {
-        this.CPF = CPF;
+        this.cpf = CPF;
     }
 
     public String getEmail() {
-        return Email;
+        return email;
     }
 
     public void setEmail(String Email) {
-        this.Email = Email;
+        this.email = Email;
     }
 
-    public EnderecoCliente getEndereco() {
-        return endereco;
-    }
-
-    public void setEndereco(EnderecoCliente endereco) {
-        this.endereco = endereco;
-    }
+    
     
     
 }

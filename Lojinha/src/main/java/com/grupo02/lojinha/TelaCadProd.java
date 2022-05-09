@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-package com.mycompany.lojinha;
+package com.grupo02.lojinha;
 
 /**
  *
@@ -89,7 +89,7 @@ public class TelaCadProd extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jLabel4)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jSpinner1, javax.swing.GroupLayout.DEFAULT_SIZE, 42, Short.MAX_VALUE)))
+                                .addComponent(jSpinner1, javax.swing.GroupLayout.PREFERRED_SIZE, 42, Short.MAX_VALUE)))
                         .addGap(34, 34, 34))))
         );
 

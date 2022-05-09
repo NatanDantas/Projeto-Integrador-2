@@ -1,4 +1,4 @@
-package com.mycompany.lojinha.MODEL;
+package com.grupo02.lojinha.MODEL;
 
 /**
  *
@@ -7,6 +7,7 @@ package com.mycompany.lojinha.MODEL;
 public class Venda {
     private int idVenda;
     private Cliente cli;
+    private Funcionario func;
     private Produto prod;
     
     public Venda(){
@@ -36,6 +37,13 @@ public class Venda {
     public void setProd(Produto prod) {
         this.prod = prod;
     }
-    
-    
+
+    public Funcionario getFunc() {
+        return func;
+    }
+
+    public void setFunc(Funcionario func) {
+        this.func = func;
+    }
+          
 }

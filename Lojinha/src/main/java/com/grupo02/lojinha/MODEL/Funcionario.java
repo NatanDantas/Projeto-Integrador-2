@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.mycompany.lojinha.MODEL;
+package com.grupo02.lojinha.MODEL;
 
 /**
  *
@@ -17,7 +17,7 @@ public class Funcionario {
     private String cargo;
     private String login;
     private String senha;
-    private EnderecoFuncionario endereco;
+    private Endereco endereco;
     
     public Funcionario(){
     
@@ -51,7 +51,7 @@ public class Funcionario {
         return senha;
     }
 
-    public EnderecoFuncionario getEndereco() {
+    public Endereco getEndereco() {
         return endereco;
     }
 
@@ -79,14 +79,12 @@ public class Funcionario {
         this.senha = senha;
     }
 
-    public void setEndereco(EnderecoFuncionario endereco) {
-        this.endereco = endereco;
-    }
-
     public void setIdFunc(int idFunc) {
         this.idFunc = idFunc;
     }
-    
-    
+
+    public void setEndereco(Endereco endereco) {
+        this.endereco = endereco;
+    }
     
 }

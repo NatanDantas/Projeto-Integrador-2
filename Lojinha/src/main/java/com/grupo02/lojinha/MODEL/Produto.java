@@ -1,4 +1,4 @@
-package com.mycompany.lojinha.MODEL;
+package com.grupo02.lojinha.MODEL;
 
 /**
  *

@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.mycompany.lojinha;
+package com.grupo02.lojinha;
 
 /**
  *
