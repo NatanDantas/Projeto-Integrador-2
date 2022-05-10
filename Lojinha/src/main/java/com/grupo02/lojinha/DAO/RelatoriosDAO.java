@@ -6,7 +6,7 @@ package com.grupo02.lojinha.DAO;
 
 /**
  *
- * @author rufin
+ * @author bruno.vrufino
  */
 public class RelatoriosDAO {
     

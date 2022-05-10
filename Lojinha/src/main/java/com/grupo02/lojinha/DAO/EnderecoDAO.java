@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package com.grupo02.lojinha.DAO;
 
 import com.grupo02.lojinha.MODEL.Cliente;
@@ -18,8 +14,8 @@ import java.util.ArrayList;
  *
  * @author bruno.vrufino
  */
-public class ClientesDAO {
-    public static boolean salvar(Cliente c)
+public class EnderecoDAO {
+    public static boolean salvar(Endereco c)
     {
         boolean retorno = false;
         Connection conexao = null;
@@ -38,7 +34,7 @@ public class ClientesDAO {
             
             
             //Passo 3 - Executar uma instrução SQL
-            instrucaoSQL = conexao.prepareStatement("INSERT INTO Cliente (nmCli,cpf,telefone,celular,email,id_enderecoCli) VALUES(?, ?, ?, ?, ?, ?)"
+            instrucaoSQL = conexao.prepareStatement("INSERT INTO Endereco (cep, rua, bairro, numero) VALUES(?, ?, ?, ?)"
                                                     , Statement.RETURN_GENERATED_KEYS);
             
             //Tenta estabeler a conexão com o SGBD e cria comando a ser executado conexão
@@ -49,13 +45,11 @@ public class ClientesDAO {
 //                                                    , Statement.RETURN_GENERATED_KEYS);  //Caso queira retornar o ID do cliente
 //            
             //Adiciono os parâmetros ao meu comando SQL
-            Endereco e = c.getEndereco();
-            instrucaoSQL.setString(1, c.getNomeCli());
-            instrucaoSQL.setString(2, c.getCPF());
-            instrucaoSQL.setString(3, c.getTelefoneCli());
-            instrucaoSQL.setString(4, c.getCelularCli());
-            instrucaoSQL.setString(5, c.getEmail());
-            instrucaoSQL.setInt(6, e.getIdEndereco());
+ 
+            instrucaoSQL.setString(1, c.getCep());
+            instrucaoSQL.setString(2, c.getRua());
+            instrucaoSQL.setString(3, c.getBairro());
+            instrucaoSQL.setInt(4, c.getNum());
             
             //Executar a instrução SQL
             int linhasAfetadas = instrucaoSQL.executeUpdate();
@@ -66,7 +60,7 @@ public class ClientesDAO {
                 
                 ResultSet generatedKeys = instrucaoSQL.getGeneratedKeys(); //Recupero o ID do cliente
                 if (generatedKeys.next()) {
-                        c.setIdCliente(generatedKeys.getInt(1));
+                        c.setIdEndereco(generatedKeys.getInt(1));
                 }
                 else {
                     throw new SQLException("Falha ao obter o ID do cliente.");
@@ -96,7 +90,7 @@ public class ClientesDAO {
         return retorno;
     }
     
-    public static boolean atualizar(Cliente c)
+    public static boolean atualizar(Endereco c)
     {
         boolean retorno = false;
         Connection conexao = null;
@@ -116,17 +110,14 @@ public class ClientesDAO {
             
             conexao = DriverManager.getConnection(URL, "root", "");
             
-            instrucaoSQL = conexao.prepareStatement("UPDATE Cliente SET nmCli = ?, cpf = ?, telefone = ?, celular = ?, email = ?, id_enderecoCli = ?  WHERE id_Cli =? ");
+            instrucaoSQL = conexao.prepareStatement("UPDATE Endereco SET cep = ?, rua = ?, bairro = ?, numero = ?  WHERE id_endereco = ?");
             
             //Adiciono os parâmetros ao meu comando SQL
-            Endereco e = c.getEndereco();
-            instrucaoSQL.setInt(1, c.getIdCliente());
-            instrucaoSQL.setString(2, c.getCPF());
-            instrucaoSQL.setString(3, c.getTelefoneCli());
-            instrucaoSQL.setString(4, c.getCelularCli());
-            instrucaoSQL.setString(5, c.getEmail());
-            instrucaoSQL.setInt(6, e.getIdEndereco());
-            
+            instrucaoSQL.setString(1, c.getCep());
+            instrucaoSQL.setString(2, c.getRua());
+            instrucaoSQL.setString(3, c.getBairro());
+            instrucaoSQL.setInt(4, c.getNum());
+
             //Mando executar a instrução SQL
             int linhasAfetadas = instrucaoSQL.executeUpdate();
             
@@ -178,7 +169,7 @@ public class ClientesDAO {
             
             conexao = DriverManager.getConnection(URL, "root", "");
             
-            instrucaoSQL = conexao.prepareStatement("DELETE FROM Cliente WHERE id_Cli = ?");
+            instrucaoSQL = conexao.prepareStatement("DELETE FROM Endereco WHERE id_endereco = ?");
             
             //Adiciono os parâmetros ao meu comando SQL
             instrucaoSQL.setInt(1, cID);
@@ -214,14 +205,14 @@ public class ClientesDAO {
         return retorno;
     }
     
-    public static ArrayList<Cliente> consultarComputadores()
+    public static ArrayList<Endereco> consultarEnderecos()
     {
         ResultSet rs = null;
         Connection conexao = null;
         PreparedStatement instrucaoSQL = null; 
         
         //Armazeno as informaçoes da tabela (resultSet) em um ArrayList
-        ArrayList<Cliente> listaClientes = new ArrayList<Cliente>();
+        ArrayList<Endereco> listaClientes = new ArrayList<Endereco>();
         
         try {
             
@@ -235,7 +226,7 @@ public class ClientesDAO {
             conexao = DriverManager.getConnection(URL, "root", "");
             
             //Passo 3 - Executo a instrução SQL
-            instrucaoSQL = conexao.prepareStatement("SELECT * FROM Cliente;");
+            instrucaoSQL = conexao.prepareStatement("SELECT * FROM Endereco;");
 
             //Executa a Query (Consulta) - Retorna um objeto da classe ResultSet
             rs = instrucaoSQL.executeQuery();
@@ -244,16 +235,16 @@ public class ClientesDAO {
             while(rs.next())
             {
                 
-                Cliente c = new Cliente();
-                c.setIdCliente(rs.getInt("id_Cli"));
-                c.setNomeCli(rs.getString("nmCli"));
-                c.setCpf(rs.getString("cpf"));
-                c.setTelefoneCli(rs.getString("telefone"));
-                c.setCelularCli(rs.getString("celular"));
-                c.setEmail(rs.getString("email"));        
+                Endereco e = new Endereco();
+                
+                e.setIdEndereco(rs.getInt("id_endereco"));
+                e.setCep(rs.getString("cep"));
+                e.setRua(rs.getString("rua"));
+                e.setBairro(rs.getString("bairro"));
+                e.setNum(rs.getInt("numero"));
                 
                 //Adiciono na listaClientes
-                listaClientes.add(c);
+                listaClientes.add(e);
             }
             
         }catch (SQLException | ClassNotFoundException ex) {
@@ -276,5 +267,4 @@ public class ClientesDAO {
         
         return listaClientes;
     }
-    
 }

@@ -6,9 +6,10 @@ package com.grupo02.lojinha.MODEL;
 
 /**
  *
- * @author rufin
+ * @author bruno.vrufino
  */
 public class Endereco {
+    private int idEndereco;
     private String cep;
     private String rua;
     private String Bairro;
@@ -17,7 +18,15 @@ public class Endereco {
     public Endereco(){
         
     }
+  
+    public int getIdEndereco() {
+        return idEndereco;
+    }
 
+    public void setIdEndereco(int idEndereco) {
+        this.idEndereco = idEndereco;
+    }
+    
     public String getCep() {
         return cep;
     }
