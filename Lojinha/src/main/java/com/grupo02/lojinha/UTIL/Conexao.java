@@ -17,10 +17,10 @@ public class Conexao {
     public static String DRIVER = "com.mysql.cj.jdbc.Driver";  //A partir da versao 8.0, mudou para com.mysql.cj.jdbc.Driver (Connector/J)                   
     
     public static String SERVER = "localhost";
-    public static String DATABASE = "loja";              //nome do seu banco de dados
+    public static String DATABASE = "perfumariabd";              //nome do seu banco de dados
     
     public static String LOGIN = "root";                     //nome de um usuário de seu BD      
-    public static String SENHA = "admin";                         //sua senha de acesso
+    public static String SENHA = "Br@15687899";                         //sua senha de acesso
     
     public static String URL = "";
     

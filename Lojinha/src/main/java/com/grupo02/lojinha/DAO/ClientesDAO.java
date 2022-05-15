@@ -33,7 +33,7 @@ public class ClientesDAO {
             //Passo 2 - DriverManager para abrir a conexão
             String URL = "jdbc:mysql://localhost:3306/perfumariabd?useTimezone=true&serverTimezone=UTC&useSSL=false";
             
-            conexao = DriverManager.getConnection(URL, "root", "");
+            conexao = DriverManager.getConnection(URL, "root", "Br@15687899");
             //conexao = GerenciadorConexao.abrirConexao();
             
             
@@ -214,7 +214,7 @@ public class ClientesDAO {
         return retorno;
     }
     
-    public static ArrayList<Cliente> consultarComputadores()
+    public static ArrayList<Cliente> consultarClientes()
     {
         ResultSet rs = null;
         Connection conexao = null;

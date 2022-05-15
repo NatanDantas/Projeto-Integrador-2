@@ -26,20 +26,21 @@ public class validaTela {
         return false;
     }
     
-    public static void authanticateNumber(JTextField txt){
+    public static boolean authanticateNumber(JTextField txt){
         try{
             if(isEmpty(txt))
                 throw new IllegalArgumentException();
             
             int textValue = Integer.parseInt(txt.getText());
             txt.setBackground(Color.WHITE);
-        }catch(NumberFormatException e){
-            lstError.add("Texto no campo " + txt.getName() + " não é um numero");
+            return true;
+        }catch(NumberFormatException e){         
             txt.setBackground(Color.RED);
+            return false;
         }
         catch(IllegalArgumentException e){
-            lstError.add("Não a texto no campo " + txt.getName());
             txt.setBackground(Color.RED);
+            return false;
         }
     }
 }
