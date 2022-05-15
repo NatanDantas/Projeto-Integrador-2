@@ -11,7 +11,9 @@ import com.grupo02.lojinha.MODEL.Cliente;
 import com.grupo02.lojinha.MODEL.Endereco;
 import com.grupo02.lojinha.UTIL.validaTela;
 import java.awt.Color;
+import java.util.ArrayList;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -24,7 +26,7 @@ public class TelaCadCliente extends javax.swing.JFrame {
      */
     public TelaCadCliente() {
         initComponents();
-        
+        carregaTable();
     }
 
     /**
@@ -259,10 +261,7 @@ public class TelaCadCliente extends javax.swing.JFrame {
 
         tblCli.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null}
+
             },
             new String [] {
                 "Nome:", "CPF:", "Telefone:", "Celular:", "Email:", "CEP:", "Rua:", "Numero:", "Bairro", "Editar", "Deletar"
@@ -455,6 +454,26 @@ public class TelaCadCliente extends javax.swing.JFrame {
             return true;
    
         return false;
+    }
+    
+    public final void carregaTable(){
+        DefaultTableModel model = (DefaultTableModel) tblCli.getModel();
+        ArrayList<Cliente> lstComp = ClientesDAO.consultarClientes();
+        Object dadoLinha[] = new Object[5];
+        for(int i = 0; i < lstComp.size() ; i++){          
+            dadoLinha[0] = lstComp.get(i).getNomeCli();
+            dadoLinha[1] = lstComp.get(i).getCPF();
+            dadoLinha[2] = lstComp.get(i).getTelefoneCli();
+            dadoLinha[3] = lstComp.get(i).getCelularCli();
+            dadoLinha[4] = lstComp.get(i).getEmail();
+            /*
+            dadoLinha[5] = lstComp.get(i).getEndereco().getCep();
+            dadoLinha[6] = lstComp.get(i).getEndereco().getRua();
+            dadoLinha[7] = lstComp.get(i).getEndereco().getNum();
+            dadoLinha[8] = lstComp.get(i).getEndereco().getBairro();
+            */
+            model.addRow(dadoLinha);
+        }
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
