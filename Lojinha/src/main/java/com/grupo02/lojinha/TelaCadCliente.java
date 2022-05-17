@@ -285,7 +285,7 @@ public class TelaCadCliente extends javax.swing.JFrame {
 
         jLabel10.setText("Nome:");
 
-        btnFiltro.setText("Filtrar");
+        btnFiltro.setText("Filtrar/Atualizar");
         btnFiltro.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnFiltroActionPerformed(evt);
@@ -300,12 +300,10 @@ public class TelaCadCliente extends javax.swing.JFrame {
                 .addGap(32, 32, 32)
                 .addComponent(jLabel10)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(txtNomeFiltro, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btnFiltro, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(26, 26, 26))
+                .addComponent(txtNomeFiltro, javax.swing.GroupLayout.PREFERRED_SIZE, 323, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnFiltro, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(68, 68, 68))
         );
         jPanel6Layout.setVerticalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -313,10 +311,9 @@ public class TelaCadCliente extends javax.swing.JFrame {
                 .addGap(28, 28, 28)
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel10)
-                    .addComponent(txtNomeFiltro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addComponent(btnFiltro, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+                    .addComponent(txtNomeFiltro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnFiltro, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(26, Short.MAX_VALUE))
         );
 
         jButton1.setText("Editar");
@@ -395,7 +392,7 @@ public class TelaCadCliente extends javax.swing.JFrame {
 
     private void btnSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarActionPerformed
         if(camposValidos()){
-            if(edicao){
+            if(!(edicao)){
                 Endereco e = new Endereco();
                 e.setCep(txtCEP.getText());
                 e.setRua(txtRua.getText());
@@ -416,6 +413,7 @@ public class TelaCadCliente extends javax.swing.JFrame {
                         JOptionPane.showMessageDialog(this, "Cliente Salvo Com Sucesso","Sucesso",JOptionPane.INFORMATION_MESSAGE);
             }else{
                 Endereco e = new Endereco();
+                e.setIdEndereco(idedicao);
                 e.setCep(txtCEP.getText());
                 e.setRua(txtRua.getText());
                 e.setBairro(txtBairro.getText());
@@ -430,8 +428,12 @@ public class TelaCadCliente extends javax.swing.JFrame {
                 c.setCelularCli(txtCelular.getText());
                 c.setEndereco(e);
                 
-                if(ClientesDAO.atualizar(c))
-                    JOptionPane.showMessageDialog(this, "Cliente Editar Com Sucesso","Sucesso",JOptionPane.INFORMATION_MESSAGE);
+                if(EnderecoDAO.atualizar(e))
+                    if(ClientesDAO.atualizar(c))
+                        JOptionPane.showMessageDialog(this, "Cliente Editado Com Sucesso","Sucesso",JOptionPane.INFORMATION_MESSAGE);
+                btnSalvar.setText("Salvar");
+                edicao = false;
+                clearCampos();
             }
         }else{
             JOptionPane.showMessageDialog(this, "Todos os Campos Precisam estar Validos","Erro",JOptionPane.WARNING_MESSAGE);
@@ -439,7 +441,8 @@ public class TelaCadCliente extends javax.swing.JFrame {
     }//GEN-LAST:event_btnSalvarActionPerformed
 
     private void btnFiltroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFiltroActionPerformed
-        // TODO add your handling code here
+        clearTable();
+        carregaTable("%"+txtNomeFiltro.getText()+"%");
     }//GEN-LAST:event_btnFiltroActionPerformed
 
     private void txtCPFKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCPFKeyTyped
@@ -447,6 +450,7 @@ public class TelaCadCliente extends javax.swing.JFrame {
     }//GEN-LAST:event_txtCPFKeyTyped
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        
         DefaultTableModel model = (DefaultTableModel) tblCli.getModel();
         idedicao = (int)model.getValueAt(tblCli.getSelectedRow(), 0);
         txtNome.setText((String)model.getValueAt(tblCli.getSelectedRow(), 1));
@@ -458,13 +462,15 @@ public class TelaCadCliente extends javax.swing.JFrame {
         txtRua.setText((String)model.getValueAt(tblCli.getSelectedRow(), 7));
         txtNum.setText("" + model.getValueAt(tblCli.getSelectedRow(), 8));
         txtBairro.setText((String)model.getValueAt(tblCli.getSelectedRow(), 9));
+        
+        btnSalvar.setText("Editar");
+        edicao = true;
         jTabbedPane1.setSelectedIndex(0);    
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         DefaultTableModel model = (DefaultTableModel) tblCli.getModel();      
         int idCli = (int)model.getValueAt(tblCli.getSelectedRow(), 0);
-        System.out.println(idCli);
         ClientesDAO.excluir(idCli);
         model.removeRow(tblCli.getSelectedRow());
     }//GEN-LAST:event_jButton2ActionPerformed
@@ -551,6 +557,45 @@ public class TelaCadCliente extends javax.swing.JFrame {
             dadoLinha[9] = lstComp.get(i).getEndereco().getBairro();
             model.addRow(dadoLinha);
         }
+    }
+    
+    public final void carregaTable(String nm){
+        DefaultTableModel model = (DefaultTableModel) tblCli.getModel();
+        ArrayList<Cliente> lstComp = ClientesDAO.consultarClientes(nm);
+        Object dadoLinha[] = new Object[10];
+        for(int i = 0; i < lstComp.size() ; i++){ 
+            dadoLinha[0] = lstComp.get(i).getIdCliente();
+            dadoLinha[1] = lstComp.get(i).getNomeCli();
+            dadoLinha[2] = lstComp.get(i).getCPF();
+            dadoLinha[3] = lstComp.get(i).getTelefoneCli();
+            dadoLinha[4] = lstComp.get(i).getCelularCli();
+            dadoLinha[5] = lstComp.get(i).getEmail();
+            dadoLinha[6] = lstComp.get(i).getEndereco().getCep();
+            dadoLinha[7] = lstComp.get(i).getEndereco().getRua();
+            dadoLinha[8] = lstComp.get(i).getEndereco().getNum();
+            dadoLinha[9] = lstComp.get(i).getEndereco().getBairro();
+            model.addRow(dadoLinha);
+        }
+    }
+    
+    public void clearTable(){
+        DefaultTableModel model = (DefaultTableModel) tblCli.getModel();
+        int linhas = model.getRowCount();
+        for(int i = 0; i < linhas; i++){
+            model.removeRow(i);
+        }
+    }
+    
+    public void clearCampos(){
+        txtNome.setText("");
+        txtCPF.setText("");
+        txtTelefone.setText("");
+        txtCelular.setText("");
+        txtEmail.setText("");
+        txtCEP.setText("");
+        txtRua.setText("");
+        txtBairro.setText("");
+        txtNum.setText("");
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

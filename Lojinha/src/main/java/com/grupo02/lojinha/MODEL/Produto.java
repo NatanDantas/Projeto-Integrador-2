@@ -2,16 +2,16 @@ package com.grupo02.lojinha.MODEL;
 
 /**
  *
- * @author bruno.vrufino
+ * @author rufin
  */
 public class Produto {
     private int idProd;
-    private String nomeProd;
-    private int valor;
+    private String nmProd;
     private String descricao;
-    
-    public Produto(){
-    
+    private int qtde;
+    private Double valor;
+
+    public Produto() {
     }
 
     public int getIdProd() {
@@ -22,20 +22,12 @@ public class Produto {
         this.idProd = idProd;
     }
 
-    public String getNomeProd() {
-        return nomeProd;
+    public String getNmProd() {
+        return nmProd;
     }
 
-    public void setNomeProd(String nomeProd) {
-        this.nomeProd = nomeProd;
-    }
-
-    public int getValor() {
-        return valor;
-    }
-
-    public void setValor(int valor) {
-        this.valor = valor;
+    public void setNmProd(String nmProd) {
+        this.nmProd = nmProd;
     }
 
     public String getDescricao() {
@@ -44,6 +36,22 @@ public class Produto {
 
     public void setDescricao(String descricao) {
         this.descricao = descricao;
+    }
+
+    public int getQtde() {
+        return qtde;
+    }
+
+    public void setQtde(int qtde) {
+        this.qtde = qtde;
+    }
+
+    public Double getValor() {
+        return valor;
+    }
+
+    public void setValor(Double valor) {
+        this.valor = valor;
     }
     
     

@@ -33,8 +33,8 @@ public class ClientesDAO {
             //Passo 2 - DriverManager para abrir a conexão
             String URL = "jdbc:mysql://localhost:3306/perfumariabd?useTimezone=true&serverTimezone=UTC&useSSL=false";
             
-            conexao = DriverManager.getConnection(URL, "root", "");
-            //conexao = DriverManager.getConnection(URL, "root", "Br@15687899");
+            //conexao = DriverManager.getConnection(URL, "root", "");
+            conexao = DriverManager.getConnection(URL, "root", "Br@15687899");
             //conexao = GerenciadorConexao.abrirConexao();
             
             
@@ -115,7 +115,8 @@ public class ClientesDAO {
             //Passo 2 - DriverManager para abrir a conexão
             String URL = "jdbc:mysql://localhost:3306/perfumariabd?useTimezone=true&serverTimezone=UTC&useSSL=false";
             
-            conexao = DriverManager.getConnection(URL, "root", "");
+            //conexao = DriverManager.getConnection(URL, "root", "");
+            conexao = DriverManager.getConnection(URL, "root", "Br@15687899");
             
             instrucaoSQL = conexao.prepareStatement("UPDATE Cliente SET nmCli = ?, cpf = ?, telefone = ?, celular = ?, email = ? WHERE id_Cli =? ");
             
@@ -178,7 +179,8 @@ public class ClientesDAO {
             //Passo 2 - DriverManager para abrir a conexão
             String URL = "jdbc:mysql://localhost:3306/perfumariabd?useTimezone=true&serverTimezone=UTC&useSSL=false";
             
-            conexao = DriverManager.getConnection(URL, "root", "");
+            //conexao = DriverManager.getConnection(URL, "root", "");
+            conexao = DriverManager.getConnection(URL, "root", "Br@15687899");
             
             instrucaoSQL = conexao.prepareStatement("DELETE FROM Cliente WHERE id_Cli = ?");
             
@@ -234,11 +236,83 @@ public class ClientesDAO {
             //Passo 2 - DriverManager para abrir a conexão
             String URL = "jdbc:mysql://localhost:3306/perfumariabd?allowPublicKeyRetrieval=true&useSSL=false?useTimezone=true&serverTimezone=UTC&useSSL=false";
             
-            conexao = DriverManager.getConnection(URL, "root", "");
-            //conexao = DriverManager.getConnection(URL, "root", "Br@15687899");
+            //conexao = DriverManager.getConnection(URL, "root", "");
+            conexao = DriverManager.getConnection(URL, "root", "Br@15687899");
             
             //Passo 3 - Executo a instrução SQL
             instrucaoSQL = conexao.prepareStatement("SELECT * FROM Cliente inner join Endereco on Cliente.id_enderecoCli = Endereco.id_endereco");
+
+            //Executa a Query (Consulta) - Retorna um objeto da classe ResultSet
+            rs = instrucaoSQL.executeQuery();
+            
+            //Percorrer o resultSet
+            while(rs.next())
+            {
+                
+                Cliente c = new Cliente();
+                Endereco e = new Endereco();
+                c.setIdCliente(rs.getInt("id_Cli"));
+                c.setNomeCli(rs.getString("nmCli"));
+                c.setCpf(rs.getString("cpf"));
+                c.setTelefoneCli(rs.getString("telefone"));
+                c.setCelularCli(rs.getString("celular"));
+                c.setEmail(rs.getString("email"));        
+                e.setIdEndereco(rs.getInt("id_enderecoCli"));
+                e.setCep(rs.getString("cep"));
+                e.setRua(rs.getString("rua"));
+                e.setBairro(rs.getString("bairro"));
+                e.setNum(rs.getInt("numero"));
+                c.setEndereco(e);
+                //Adiciono na listaClientes
+                listaClientes.add(c);
+            }
+            
+        }catch (SQLException | ClassNotFoundException ex) {
+            System.out.println(ex.getMessage());
+            listaClientes = null;
+        } finally{
+            //Libero os recursos da memória
+            try {
+                if(rs!=null)
+                    rs.close();                
+                if(instrucaoSQL!=null)
+                    instrucaoSQL.close();
+                
+                conexao.close();
+                //GerenciadorConexao.fecharConexao();
+                        
+              } catch (SQLException ex) {
+             }
+        }
+        
+        return listaClientes;
+    }
+    
+    public static ArrayList<Cliente> consultarClientes(String nm)
+    {
+        ResultSet rs = null;
+        Connection conexao = null;
+        PreparedStatement instrucaoSQL = null; 
+        
+        //Armazeno as informaçoes da tabela (resultSet) em um ArrayList
+        ArrayList<Cliente> listaClientes = new ArrayList<Cliente>();
+        
+        try {
+            
+            //conexao = GerenciadorConexao.abrirConexao();
+            //Passo 1
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            
+            //Passo 2 - DriverManager para abrir a conexão
+            String URL = "jdbc:mysql://localhost:3306/perfumariabd?allowPublicKeyRetrieval=true&useSSL=false?useTimezone=true&serverTimezone=UTC&useSSL=false";
+            
+            //conexao = DriverManager.getConnection(URL, "root", "");
+            conexao = DriverManager.getConnection(URL, "root", "Br@15687899");
+            
+            //Passo 3 - Executo a instrução SQL
+            instrucaoSQL = conexao.prepareStatement("SELECT * FROM Cliente inner join Endereco on Cliente.id_enderecoCli = Endereco.id_endereco where Cliente.nmCli like ? ");
+            
+            instrucaoSQL.setString(1, nm);
 
             //Executa a Query (Consulta) - Retorna um objeto da classe ResultSet
             rs = instrucaoSQL.executeQuery();

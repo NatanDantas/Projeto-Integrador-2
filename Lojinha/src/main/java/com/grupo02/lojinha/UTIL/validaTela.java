@@ -31,7 +31,7 @@ public class validaTela {
             if(isEmpty(txt))
                 throw new IllegalArgumentException();
             
-            int textValue = Integer.parseInt(txt.getText());
+            long textValue = Long.parseLong(txt.getText());
             txt.setBackground(Color.WHITE);
             return true;
         }catch(NumberFormatException e){         
