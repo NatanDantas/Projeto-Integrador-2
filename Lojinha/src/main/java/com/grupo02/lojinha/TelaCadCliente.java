@@ -13,6 +13,7 @@ import com.grupo02.lojinha.UTIL.validaTela;
 import java.awt.Color;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
+import javax.swing.JTabbedPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -20,7 +21,8 @@ import javax.swing.table.DefaultTableModel;
  * @author jose.ncdantas
  */
 public class TelaCadCliente extends javax.swing.JFrame {
- 
+    boolean edicao = false;
+    int idedicao = 0;
     /**
      * Creates new form TelaCadCliente
      */
@@ -68,6 +70,8 @@ public class TelaCadCliente extends javax.swing.JFrame {
         jLabel10 = new javax.swing.JLabel();
         txtNomeFiltro = new javax.swing.JTextField();
         btnFiltro = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -264,11 +268,11 @@ public class TelaCadCliente extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Nome:", "CPF:", "Telefone:", "Celular:", "Email:", "CEP:", "Rua:", "Numero:", "Bairro", "Editar", "Deletar"
+                "id", "Nome:", "CPF:", "Telefone:", "Celular:", "Email:", "CEP:", "Rua:", "Numero:", "Bairro"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false, false, false, false, false
+                true, false, false, false, false, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -315,26 +319,57 @@ public class TelaCadCliente extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
+        jButton1.setText("Editar");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
+        jButton2.setText("Deletar");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 657, Short.MAX_VALUE))
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 608, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap())
         );
+
+        jPanel4Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {jButton1, jButton2});
+
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 222, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 222, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addGap(34, 34, 34)
+                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(36, 36, 36)
+                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(20, 20, 20))
         );
+
+        jPanel4Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {jButton1, jButton2});
 
         jTabbedPane1.addTab("Consultar", jPanel4);
 
@@ -360,36 +395,79 @@ public class TelaCadCliente extends javax.swing.JFrame {
 
     private void btnSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarActionPerformed
         if(camposValidos()){
-            Endereco e = new Endereco();
-            e.setCep(txtCEP.getText());
-            e.setRua(txtRua.getText());
-            e.setBairro(txtBairro.getText());
-            e.setNum(Integer.parseInt(txtNum.getText()));
-            
-            Cliente c = new Cliente();
-            c.setNomeCli(txtNome.getText());
-            c.setCPF(txtCPF.getText());
-            c.setEmail(txtEmail.getText());
-            c.setTelefoneCli(txtTelefone.getText());
-            c.setCelularCli(txtCelular.getText());
-            c.setEndereco(e);
-            
-            boolean enderecoSalvo = EnderecoDAO.salvar(e);
-            if(enderecoSalvo)
-                if(ClientesDAO.salvar(c))
-                    JOptionPane.showMessageDialog(this, "Cliente Salvo Com Sucesso","Sucesso",JOptionPane.INFORMATION_MESSAGE);
+            if(edicao){
+                Endereco e = new Endereco();
+                e.setCep(txtCEP.getText());
+                e.setRua(txtRua.getText());
+                e.setBairro(txtBairro.getText());
+                e.setNum(Integer.parseInt(txtNum.getText()));
+
+                Cliente c = new Cliente();
+                c.setNomeCli(txtNome.getText());
+                c.setCPF(txtCPF.getText());
+                c.setEmail(txtEmail.getText());
+                c.setTelefoneCli(txtTelefone.getText());
+                c.setCelularCli(txtCelular.getText());
+                c.setEndereco(e);
+
+                boolean enderecoSalvo = EnderecoDAO.salvar(e);
+                if(enderecoSalvo)
+                    if(ClientesDAO.salvar(c))
+                        JOptionPane.showMessageDialog(this, "Cliente Salvo Com Sucesso","Sucesso",JOptionPane.INFORMATION_MESSAGE);
+            }else{
+                Endereco e = new Endereco();
+                e.setCep(txtCEP.getText());
+                e.setRua(txtRua.getText());
+                e.setBairro(txtBairro.getText());
+                e.setNum(Integer.parseInt(txtNum.getText()));
+
+                Cliente c = new Cliente();
+                c.setIdCliente(idedicao);
+                c.setNomeCli(txtNome.getText());
+                c.setCPF(txtCPF.getText());
+                c.setEmail(txtEmail.getText());
+                c.setTelefoneCli(txtTelefone.getText());
+                c.setCelularCli(txtCelular.getText());
+                c.setEndereco(e);
+                
+                if(ClientesDAO.atualizar(c))
+                    JOptionPane.showMessageDialog(this, "Cliente Editar Com Sucesso","Sucesso",JOptionPane.INFORMATION_MESSAGE);
+            }
         }else{
             JOptionPane.showMessageDialog(this, "Todos os Campos Precisam estar Validos","Erro",JOptionPane.WARNING_MESSAGE);
         }
     }//GEN-LAST:event_btnSalvarActionPerformed
 
     private void btnFiltroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFiltroActionPerformed
-        // TODO add your handling code here:
+        // TODO add your handling code here
     }//GEN-LAST:event_btnFiltroActionPerformed
 
     private void txtCPFKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCPFKeyTyped
         
     }//GEN-LAST:event_txtCPFKeyTyped
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        DefaultTableModel model = (DefaultTableModel) tblCli.getModel();
+        idedicao = (int)model.getValueAt(tblCli.getSelectedRow(), 0);
+        txtNome.setText((String)model.getValueAt(tblCli.getSelectedRow(), 1));
+        txtCPF.setText((String)model.getValueAt(tblCli.getSelectedRow(), 2));
+        txtTelefone.setText((String)model.getValueAt(tblCli.getSelectedRow(), 3));
+        txtCelular.setText((String)model.getValueAt(tblCli.getSelectedRow(), 4));
+        txtEmail.setText((String)model.getValueAt(tblCli.getSelectedRow(), 5));
+        txtCEP.setText((String)model.getValueAt(tblCli.getSelectedRow(), 6));
+        txtRua.setText((String)model.getValueAt(tblCli.getSelectedRow(), 7));
+        txtNum.setText("" + model.getValueAt(tblCli.getSelectedRow(), 8));
+        txtBairro.setText((String)model.getValueAt(tblCli.getSelectedRow(), 9));
+        jTabbedPane1.setSelectedIndex(0);    
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        DefaultTableModel model = (DefaultTableModel) tblCli.getModel();      
+        int idCli = (int)model.getValueAt(tblCli.getSelectedRow(), 0);
+        System.out.println(idCli);
+        ClientesDAO.excluir(idCli);
+        model.removeRow(tblCli.getSelectedRow());
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -459,19 +537,18 @@ public class TelaCadCliente extends javax.swing.JFrame {
     public final void carregaTable(){
         DefaultTableModel model = (DefaultTableModel) tblCli.getModel();
         ArrayList<Cliente> lstComp = ClientesDAO.consultarClientes();
-        Object dadoLinha[] = new Object[5];
-        for(int i = 0; i < lstComp.size() ; i++){          
-            dadoLinha[0] = lstComp.get(i).getNomeCli();
-            dadoLinha[1] = lstComp.get(i).getCPF();
-            dadoLinha[2] = lstComp.get(i).getTelefoneCli();
-            dadoLinha[3] = lstComp.get(i).getCelularCli();
-            dadoLinha[4] = lstComp.get(i).getEmail();
-            /*
-            dadoLinha[5] = lstComp.get(i).getEndereco().getCep();
-            dadoLinha[6] = lstComp.get(i).getEndereco().getRua();
-            dadoLinha[7] = lstComp.get(i).getEndereco().getNum();
-            dadoLinha[8] = lstComp.get(i).getEndereco().getBairro();
-            */
+        Object dadoLinha[] = new Object[10];
+        for(int i = 0; i < lstComp.size() ; i++){ 
+            dadoLinha[0] = lstComp.get(i).getIdCliente();
+            dadoLinha[1] = lstComp.get(i).getNomeCli();
+            dadoLinha[2] = lstComp.get(i).getCPF();
+            dadoLinha[3] = lstComp.get(i).getTelefoneCli();
+            dadoLinha[4] = lstComp.get(i).getCelularCli();
+            dadoLinha[5] = lstComp.get(i).getEmail();
+            dadoLinha[6] = lstComp.get(i).getEndereco().getCep();
+            dadoLinha[7] = lstComp.get(i).getEndereco().getRua();
+            dadoLinha[8] = lstComp.get(i).getEndereco().getNum();
+            dadoLinha[9] = lstComp.get(i).getEndereco().getBairro();
             model.addRow(dadoLinha);
         }
     }
@@ -479,6 +556,8 @@ public class TelaCadCliente extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnFiltro;
     private javax.swing.JButton btnSalvar;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;

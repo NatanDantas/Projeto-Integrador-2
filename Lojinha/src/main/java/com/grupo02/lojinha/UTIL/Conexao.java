@@ -20,7 +20,8 @@ public class Conexao {
     public static String DATABASE = "perfumariabd";              //nome do seu banco de dados
     
     public static String LOGIN = "root";                     //nome de um usuário de seu BD      
-    public static String SENHA = "Br@15687899";                         //sua senha de acesso
+    public static String SENHA = " "; 
+    //public static String SENHA = "Br@15687899";                         //sua senha de acesso
     
     public static String URL = "";
     
