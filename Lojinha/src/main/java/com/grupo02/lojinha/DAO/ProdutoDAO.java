@@ -176,7 +176,7 @@ public class ProdutoDAO {
             //conexao = DriverManager.getConnection(URL, "root", "");
             conexao = DriverManager.getConnection(URL, "root", "Br@15687899");
             
-            instrucaoSQL = conexao.prepareStatement("DELETE FROM Produto WHERE id_Produto = ?");
+            instrucaoSQL = conexao.prepareStatement("DELETE FROM Produto WHERE id_Prod = ?");
             
             //Adiciono os parâmetros ao meu comando SQL
             instrucaoSQL.setInt(1, pID);

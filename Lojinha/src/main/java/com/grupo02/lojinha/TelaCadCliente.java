@@ -428,12 +428,14 @@ public class TelaCadCliente extends javax.swing.JFrame {
                 c.setCelularCli(txtCelular.getText());
                 c.setEndereco(e);
                 
-                if(EnderecoDAO.atualizar(e))
-                    if(ClientesDAO.atualizar(c))
+                if(EnderecoDAO.atualizar(e)){
+                    if(ClientesDAO.atualizar(c)){
                         JOptionPane.showMessageDialog(this, "Cliente Editado Com Sucesso","Sucesso",JOptionPane.INFORMATION_MESSAGE);
-                btnSalvar.setText("Salvar");
-                edicao = false;
-                clearCampos();
+                        btnSalvar.setText("Salvar");
+                        edicao = false;
+                        clearCampos();
+                    }
+                }
             }
         }else{
             JOptionPane.showMessageDialog(this, "Todos os Campos Precisam estar Validos","Erro",JOptionPane.WARNING_MESSAGE);
@@ -580,9 +582,8 @@ public class TelaCadCliente extends javax.swing.JFrame {
     
     public void clearTable(){
         DefaultTableModel model = (DefaultTableModel) tblCli.getModel();
-        int linhas = model.getRowCount();
-        for(int i = 0; i < linhas; i++){
-            model.removeRow(i);
+        while(model.getRowCount() > 0){
+            model.removeRow(0);
         }
     }
     
