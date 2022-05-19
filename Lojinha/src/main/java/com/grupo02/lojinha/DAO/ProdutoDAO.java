@@ -15,7 +15,7 @@ import java.util.ArrayList;
  * @author rufin
  */
 public class ProdutoDAO {
-      public static boolean salvar(Produto p)
+    public static boolean salvar(Produto p)
     {
         boolean retorno = false;
         Connection conexao = null;

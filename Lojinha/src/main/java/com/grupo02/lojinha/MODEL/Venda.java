@@ -1,14 +1,18 @@
 package com.grupo02.lojinha.MODEL;
 
+import java.util.ArrayList;
+import java.util.Date;
+
 /**
  *
  * @author bruno.vrufino
  */
 public class Venda {
     private int idVenda;
-    private Cliente cli;
-    private Funcionario func;
-    private Produto prod;
+    private int idcli;
+    private int idfunc;
+    private Date data;
+    private ArrayList<DetalheVenda> itensVenda;
     
     public Venda(){
     
@@ -22,28 +26,40 @@ public class Venda {
         this.idVenda = idVenda;
     }
 
-    public Cliente getCli() {
-        return cli;
+    public int getIdcli() {
+        return idcli;
     }
 
-    public void setCli(Cliente cli) {
-        this.cli = cli;
+    public void setIdcli(int idcli) {
+        this.idcli = idcli;
     }
 
-    public Produto getProd() {
-        return prod;
+    public int getIdfunc() {
+        return idfunc;
     }
 
-    public void setProd(Produto prod) {
-        this.prod = prod;
+    public void setIdfunc(int idfunc) {
+        this.idfunc = idfunc;
     }
 
-    public Funcionario getFunc() {
-        return func;
+    
+
+    public Date getData() {
+        return data;
     }
 
-    public void setFunc(Funcionario func) {
-        this.func = func;
+    public void setData(Date data) {
+        this.data = data;
     }
+
+    public ArrayList<DetalheVenda> getItensVenda() {
+        return itensVenda;
+    }
+
+    public void setItensVenda(ArrayList<DetalheVenda> itensVenda) {
+        this.itensVenda = itensVenda;
+    }
+    
+    
           
 }
