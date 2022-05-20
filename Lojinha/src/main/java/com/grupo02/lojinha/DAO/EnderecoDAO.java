@@ -1,6 +1,7 @@
 package com.grupo02.lojinha.DAO;
 
 import com.grupo02.lojinha.MODEL.Cliente;
+import com.grupo02.lojinha.MODEL.DadosPessoais;
 import com.grupo02.lojinha.MODEL.Endereco;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -272,5 +273,13 @@ public class EnderecoDAO {
         }
         
         return listaClientes;
+    }
+
+    public static boolean salvar(DadosPessoais d) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    public static boolean atualizar(DadosPessoais d) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 }
