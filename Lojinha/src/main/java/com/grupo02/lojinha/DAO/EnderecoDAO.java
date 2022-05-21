@@ -1,7 +1,6 @@
 package com.grupo02.lojinha.DAO;
 
 import com.grupo02.lojinha.MODEL.Cliente;
-import com.grupo02.lojinha.MODEL.DadosPessoais;
 import com.grupo02.lojinha.MODEL.Endereco;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -30,8 +29,8 @@ public class EnderecoDAO {
             //Passo 2 - DriverManager para abrir a conexão
             String URL = "jdbc:mysql://localhost:3306/perfumariabd?useTimezone=true&serverTimezone=UTC&useSSL=false";
             
-            //conexao = DriverManager.getConnection(URL, "root", "");
-            conexao = DriverManager.getConnection(URL, "root", "Br@15687899");
+            conexao = DriverManager.getConnection(URL, "root", "");
+            //conexao = DriverManager.getConnection(URL, "root", "Br@15687899");
             //conexao = GerenciadorConexao.abrirConexao();
             
             
@@ -111,8 +110,8 @@ public class EnderecoDAO {
             //Passo 2 - DriverManager para abrir a conexão
             String URL = "jdbc:mysql://localhost:3306/perfumariabd?useTimezone=true&serverTimezone=UTC&useSSL=false";
             
-            //conexao = DriverManager.getConnection(URL, "root", "");
-            conexao = DriverManager.getConnection(URL, "root", "Br@15687899");
+            conexao = DriverManager.getConnection(URL, "root", "");
+            //conexao = DriverManager.getConnection(URL, "root", "Br@15687899");
             
             instrucaoSQL = conexao.prepareStatement("UPDATE Endereco SET cep = ?, rua = ?, bairro = ?, numero = ?  WHERE id_endereco = ?");
             
@@ -172,8 +171,8 @@ public class EnderecoDAO {
             //Passo 2 - DriverManager para abrir a conexão
             String URL = "jdbc:mysql://localhost:3306/perfumariabd?useTimezone=true&serverTimezone=UTC&useSSL=false";
             
-            //conexao = DriverManager.getConnection(URL, "root", "");
-            conexao = DriverManager.getConnection(URL, "root", "Br@15687899");
+            conexao = DriverManager.getConnection(URL, "root", "");
+            //conexao = DriverManager.getConnection(URL, "root", "Br@15687899");
             
             instrucaoSQL = conexao.prepareStatement("DELETE FROM Endereco WHERE id_endereco = ?");
             
@@ -229,8 +228,8 @@ public class EnderecoDAO {
             //Passo 2 - DriverManager para abrir a conexão
             String URL = "jdbc:mysql://localhost:3306/perfumariabd?useTimezone=true&serverTimezone=UTC&useSSL=false";
             
-            //conexao = DriverManager.getConnection(URL, "root", "");
-            conexao = DriverManager.getConnection(URL, "root", "Br@15687899");
+            conexao = DriverManager.getConnection(URL, "root", "");
+            //conexao = DriverManager.getConnection(URL, "root", "Br@15687899");
             
             //Passo 3 - Executo a instrução SQL
             instrucaoSQL = conexao.prepareStatement("SELECT * FROM Endereco;");
@@ -273,13 +272,5 @@ public class EnderecoDAO {
         }
         
         return listaClientes;
-    }
-
-    public static boolean salvar(DadosPessoais d) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
-    public static boolean atualizar(DadosPessoais d) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 }

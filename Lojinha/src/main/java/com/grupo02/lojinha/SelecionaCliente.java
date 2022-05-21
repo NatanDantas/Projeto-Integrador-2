@@ -20,6 +20,7 @@ public class SelecionaCliente extends javax.swing.JFrame {
      */
     public SelecionaCliente() {
         initComponents();
+        carregaTable();
     }
 
     /**
@@ -35,7 +36,7 @@ public class SelecionaCliente extends javax.swing.JFrame {
         tblCli = new javax.swing.JTable();
         btnSelect = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         tblCli.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -48,6 +49,11 @@ public class SelecionaCliente extends javax.swing.JFrame {
         jScrollPane1.setViewportView(tblCli);
 
         btnSelect.setText("Selecionar");
+        btnSelect.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSelectActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -73,6 +79,16 @@ public class SelecionaCliente extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnSelectActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSelectActionPerformed
+        DefaultTableModel model = (DefaultTableModel) tblCli.getModel();
+        TelaVenda tv = new TelaVenda();
+        String id = model.getValueAt(tblCli.getSelectedRow(), 0).toString();
+        String nm = model.getValueAt(tblCli.getSelectedRow(), 1).toString();
+        tv.preencheCli(id, nm);
+        tv.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_btnSelectActionPerformed
 
     /**
      * @param args the command line arguments
@@ -109,9 +125,9 @@ public class SelecionaCliente extends javax.swing.JFrame {
         });
     }
     
-    public final void carregaTable(String nm){
+    public final void carregaTable(){
         DefaultTableModel model = (DefaultTableModel) tblCli.getModel();
-        ArrayList<Cliente> lstComp = ClientesDAO.consultarClientes(nm);
+        ArrayList<Cliente> lstComp = ClientesDAO.consultarClientes();
         Object dadoLinha[] = new Object[2];
         for(int i = 0; i < lstComp.size() ; i++){ 
             dadoLinha[0] = lstComp.get(i).getIdCliente();

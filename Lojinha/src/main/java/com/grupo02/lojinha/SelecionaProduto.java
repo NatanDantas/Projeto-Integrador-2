@@ -32,7 +32,7 @@ public class SelecionaProduto extends javax.swing.JFrame {
         tblProd = new javax.swing.JTable();
         btnselect = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         tblProd.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -45,6 +45,11 @@ public class SelecionaProduto extends javax.swing.JFrame {
         jScrollPane1.setViewportView(tblProd);
 
         btnselect.setText("Selecionar");
+        btnselect.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnselectActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -67,6 +72,16 @@ public class SelecionaProduto extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnselectActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnselectActionPerformed
+        DefaultTableModel model = (DefaultTableModel) tblProd.getModel();
+        TelaVenda tv = new TelaVenda();
+        String id = model.getValueAt(tblProd.getSelectedRow(), 0).toString();
+        String nm = model.getValueAt(tblProd.getSelectedRow(), 1).toString();
+        tv.preencheProd(id, nm);
+        tv.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_btnselectActionPerformed
 
     /**
      * @param args the command line arguments

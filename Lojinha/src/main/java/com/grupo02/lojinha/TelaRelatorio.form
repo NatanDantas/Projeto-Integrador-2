@@ -173,14 +173,14 @@
                     <Property name="text" type="java.lang.String" value="Entre:"/>
                   </Properties>
                 </Component>
-                <Component class="com.toedter.calendar.JDateChooser" name="jDateChooser1">
+                <Component class="org.netbeans.modules.form.InvalidComponent" name="jDateChooser1">
                 </Component>
                 <Component class="javax.swing.JLabel" name="jLabel2">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="E:"/>
                   </Properties>
                 </Component>
-                <Component class="com.toedter.calendar.JDateChooser" name="jDateChooser2">
+                <Component class="org.netbeans.modules.form.InvalidComponent" name="jDateChooser2">
                 </Component>
                 <Component class="javax.swing.JButton" name="jButton2">
                   <Properties>

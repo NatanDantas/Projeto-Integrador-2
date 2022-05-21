@@ -7,8 +7,6 @@ package com.grupo02.lojinha;
 
 import com.grupo02.lojinha.DAO.EnderecoDAO;
 import com.grupo02.lojinha.MODEL.Endereco;
-import com.grupo02.lojinha.MODEL.Login;
-import com.grupo02.lojinha.MODEL.DadosPessoais;
 import com.grupo02.lojinha.UTIL.validaTela;
 import javax.swing.JOptionPane;
 /**
@@ -400,57 +398,9 @@ public class TelaCadFuncionario extends javax.swing.JFrame {
 
     private void btnSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarActionPerformed
         if(camposValidos()){
-            if(!(edicao)){
-                DadosPessoais d = new DadosPessoais();
-                d.setNome(txtNome.getText());
-                d.setCPF(txtCPF.getText());
-                d.setTelefone(txtTelefone.getText());
-                d.setCelular(txtCelular.getText());
-              
-                Login l = new Login();
-                l.setLogin(txtLogin.getText());
-                l.setSenha(Integer.parseInt(txtSenha.getText()));
-                
-                Endereco e = new Endereco();
-                e.setCep(txtCEP.getText());
-                e.setRua(txtRua.getText());
-                e.setBairro(txtBairro.getText());
-                e.setNum(Integer.parseInt(txtNum.getText()));
-                e.setEndereco(d);
-
-                boolean enderecoSalvo = EnderecoDAO.salvar(d);
-                if(enderecoSalvo)
-                    if(FuncionariosDAO.salvar(e))
-                        JOptionPane.showMessageDialog(this, "Funcionario Salvo Com Sucesso","Sucesso",JOptionPane.INFORMATION_MESSAGE);
-              }else{
-                DadosPessoais d = new DadosPessoais();
-                d.setIdDadosPessoais(idedicao);
-                d.setNome(txtNome.getText());
-                d.setCPF(txtCPF.getText());
-                d.setTelefone(txtTelefone.getText());
-                d.setCelular(txtCelular.getText());
-                
-                Login l = new Login();
-                l.setLogin(txtLogin.getText());
-                l.setSenha(Integer.parseInt(txtSenha.getText()));
-                
-                Endereco e = new Endereco();
-                e.setIdEndereco(idedicao);
-                e.setCep(txtCEP.getText());
-                e.setRua(txtRua.getText());
-                e.setBairro(txtBairro.getText());
-                e.setNum(Integer.parseInt(txtNum.getText()));
-                e.setEndereco(d);
-                
-                if(EnderecoDAO.atualizar(d)){
-                    if(FuncionariosDAO.Salvar(e)){
-                        JOptionPane.showMessageDialog(this, "Funcionario salvo Com Sucesso","Sucesso",JOptionPane.INFORMATION_MESSAGE);
-                        btnSalvar.setText("Salvar");
-                        edicao = false;
-                        clearCampos();
-                    }
-                }
-            }
+            
+               
+            
         }else{
             JOptionPane.showMessageDialog(this, "Todos os Campos Precisam estar Validos","Erro",JOptionPane.WARNING_MESSAGE);
         } 
