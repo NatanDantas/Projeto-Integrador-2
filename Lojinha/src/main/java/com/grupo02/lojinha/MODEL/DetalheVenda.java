@@ -7,7 +7,7 @@ package com.grupo02.lojinha.MODEL;
 public class DetalheVenda {
     private int idVenda;
     private int idDetalheVenda;
-    private int idProd;
+    private Produto Prod;
     private double valor;
     private int quantidade;
 
@@ -30,13 +30,15 @@ public class DetalheVenda {
         this.idDetalheVenda = idDetalheVenda;
     }
 
-    public int getIdProd() {
-        return idProd;
+    public Produto getProd() {
+        return Prod;
     }
 
-    public void setIdProd(int idProd) {
-        this.idProd = idProd;
+    public void setProd(Produto Prod) {
+        this.Prod = Prod;
     }
+
+  
 
     public double getValor() {
         return valor;

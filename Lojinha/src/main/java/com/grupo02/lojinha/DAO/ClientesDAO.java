@@ -33,8 +33,8 @@ public class ClientesDAO {
             //Passo 2 - DriverManager para abrir a conexão
             String URL = "jdbc:mysql://localhost:3306/perfumariabd?useTimezone=true&serverTimezone=UTC&useSSL=false";
             
-            conexao = DriverManager.getConnection(URL, "root", "");
-            //conexao = DriverManager.getConnection(URL, "root", "Br@15687899");
+            //conexao = DriverManager.getConnection(URL, "root", "");
+            conexao = DriverManager.getConnection(URL, "root", "Br@15687899");
             //conexao = GerenciadorConexao.abrirConexao();
             
             
@@ -115,8 +115,8 @@ public class ClientesDAO {
             //Passo 2 - DriverManager para abrir a conexão
             String URL = "jdbc:mysql://localhost:3306/perfumariabd?useTimezone=true&serverTimezone=UTC&useSSL=false";
             
-            conexao = DriverManager.getConnection(URL, "root", "");
-            //conexao = DriverManager.getConnection(URL, "root", "Br@15687899");
+            //conexao = DriverManager.getConnection(URL, "root", "");
+            conexao = DriverManager.getConnection(URL, "root", "Br@15687899");
             
             instrucaoSQL = conexao.prepareStatement("UPDATE Cliente SET nmCli = ?, cpf = ?, telefone = ?, celular = ?, email = ? WHERE id_Cli =? ");
             
@@ -179,8 +179,8 @@ public class ClientesDAO {
             //Passo 2 - DriverManager para abrir a conexão
             String URL = "jdbc:mysql://localhost:3306/perfumariabd?useTimezone=true&serverTimezone=UTC&useSSL=false";
             
-            conexao = DriverManager.getConnection(URL, "root", "");
-            //conexao = DriverManager.getConnection(URL, "root", "Br@15687899");
+            //conexao = DriverManager.getConnection(URL, "root", "");
+            conexao = DriverManager.getConnection(URL, "root", "Br@15687899");
             
             instrucaoSQL = conexao.prepareStatement("DELETE FROM Cliente WHERE id_Cli = ?");
             
@@ -236,8 +236,8 @@ public class ClientesDAO {
             //Passo 2 - DriverManager para abrir a conexão
             String URL = "jdbc:mysql://localhost:3306/perfumariabd?allowPublicKeyRetrieval=true&useSSL=false?useTimezone=true&serverTimezone=UTC&useSSL=false";
             
-            conexao = DriverManager.getConnection(URL, "root", "");
-            //conexao = DriverManager.getConnection(URL, "root", "Br@15687899");
+            //conexao = DriverManager.getConnection(URL, "root", "");
+            conexao = DriverManager.getConnection(URL, "root", "Br@15687899");
             
             //Passo 3 - Executo a instrução SQL
             instrucaoSQL = conexao.prepareStatement("SELECT * FROM Cliente inner join Endereco on Cliente.id_enderecoCli = Endereco.id_endereco");
@@ -306,8 +306,8 @@ public class ClientesDAO {
             //Passo 2 - DriverManager para abrir a conexão
             String URL = "jdbc:mysql://localhost:3306/perfumariabd?allowPublicKeyRetrieval=true&useSSL=false?useTimezone=true&serverTimezone=UTC&useSSL=false";
             
-            conexao = DriverManager.getConnection(URL, "root", "");
-            //conexao = DriverManager.getConnection(URL, "root", "Br@15687899");
+            //conexao = DriverManager.getConnection(URL, "root", "");
+            conexao = DriverManager.getConnection(URL, "root", "Br@15687899");
             
             //Passo 3 - Executo a instrução SQL
             instrucaoSQL = conexao.prepareStatement("SELECT * FROM Cliente inner join Endereco on Cliente.id_enderecoCli = Endereco.id_endereco where Cliente.nmCli like ? ");

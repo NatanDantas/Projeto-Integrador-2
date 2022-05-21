@@ -29,8 +29,8 @@ public class ProdutoDAO {
             //Passo 2 - DriverManager para abrir a conexão
             String URL = "jdbc:mysql://localhost:3306/perfumariabd?useTimezone=true&serverTimezone=UTC&useSSL=false";
             
-            conexao = DriverManager.getConnection(URL, "root", "");
-            //conexao = DriverManager.getConnection(URL, "root", "Br@15687899");
+            //conexao = DriverManager.getConnection(URL, "root", "");
+            conexao = DriverManager.getConnection(URL, "root", "Br@15687899");
             //conexao = GerenciadorConexao.abrirConexao();
             
             
@@ -110,8 +110,8 @@ public class ProdutoDAO {
             //Passo 2 - DriverManager para abrir a conexão
             String URL = "jdbc:mysql://localhost:3306/perfumariabd?useTimezone=true&serverTimezone=UTC&useSSL=false";
             
-            conexao = DriverManager.getConnection(URL, "root", "");
-            //conexao = DriverManager.getConnection(URL, "root", "Br@15687899");
+            //conexao = DriverManager.getConnection(URL, "root", "");
+            conexao = DriverManager.getConnection(URL, "root", "Br@15687899");
             
             instrucaoSQL = conexao.prepareStatement("UPDATE Produto SET nmProd = ?, valor = ?, descricao = ?, qtdEstoque = ? WHERE id_Prod =? ");
             
@@ -173,8 +173,8 @@ public class ProdutoDAO {
             //Passo 2 - DriverManager para abrir a conexão
             String URL = "jdbc:mysql://localhost:3306/perfumariabd?useTimezone=true&serverTimezone=UTC&useSSL=false";
             
-            conexao = DriverManager.getConnection(URL, "root", "");
-            //conexao = DriverManager.getConnection(URL, "root", "Br@15687899");
+            //conexao = DriverManager.getConnection(URL, "root", "");
+            conexao = DriverManager.getConnection(URL, "root", "Br@15687899");
             
             instrucaoSQL = conexao.prepareStatement("DELETE FROM Produto WHERE id_Prod = ?");
             
@@ -230,8 +230,8 @@ public class ProdutoDAO {
             //Passo 2 - DriverManager para abrir a conexão
             String URL = "jdbc:mysql://localhost:3306/perfumariabd?allowPublicKeyRetrieval=true&useSSL=false?useTimezone=true&serverTimezone=UTC&useSSL=false";
             
-            conexao = DriverManager.getConnection(URL, "root", "");
-            //conexao = DriverManager.getConnection(URL, "root", "Br@15687899");
+            //conexao = DriverManager.getConnection(URL, "root", "");
+            conexao = DriverManager.getConnection(URL, "root", "Br@15687899");
             
             //Passo 3 - Executo a instrução SQL
             instrucaoSQL = conexao.prepareStatement("SELECT * FROM Produto");

@@ -28,8 +28,8 @@ public class DetalheVendaDAO {
             //Passo 2 - DriverManager para abrir a conexão
             String URL = "jdbc:mysql://localhost:3306/perfumariabd?useTimezone=true&serverTimezone=UTC&useSSL=false";
             
-            conexao = DriverManager.getConnection(URL, "root", "");
-            //conexao = DriverManager.getConnection(URL, "root", "Br@15687899");
+            //conexao = DriverManager.getConnection(URL, "root", "");
+            conexao = DriverManager.getConnection(URL, "root", "Br@15687899");
             //conexao = GerenciadorConexao.abrirConexao();
             
             for(int i = 0; i < dv.size(); i++){
@@ -46,7 +46,7 @@ public class DetalheVendaDAO {
     //            
                 //Adiciono os parâmetros ao meu comando SQL
 
-                instrucaoSQL.setInt(1,dv.get(i).getIdProd());
+                instrucaoSQL.setInt(1,dv.get(i).getProd().getIdProd());
                 instrucaoSQL.setInt(2, dv.get(i).getQuantidade());
                 instrucaoSQL.setDouble(3, dv.get(i).getValor());
                 instrucaoSQL.setInt(4, dv.get(i).getIdVenda());

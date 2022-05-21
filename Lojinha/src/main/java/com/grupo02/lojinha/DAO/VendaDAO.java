@@ -33,8 +33,8 @@ public class VendaDAO {
             //Passo 2 - DriverManager para abrir a conexão
             String URL = "jdbc:mysql://localhost:3306/perfumariabd?useTimezone=true&serverTimezone=UTC&useSSL=false";
             
-            conexao = DriverManager.getConnection(URL, "root", "");
-            //conexao = DriverManager.getConnection(URL, "root", "Br@15687899");
+            //conexao = DriverManager.getConnection(URL, "root", "");
+            conexao = DriverManager.getConnection(URL, "root", "Br@15687899");
             //conexao = GerenciadorConexao.abrirConexao();
             
             
@@ -50,10 +50,10 @@ public class VendaDAO {
 //                                                    , Statement.RETURN_GENERATED_KEYS);  //Caso queira retornar o ID do cliente
 //            
             //Adiciono os parâmetros ao meu comando SQL
-
+            Date sqlDate = new java.sql.Date(v.getData().getTime());
             instrucaoSQL.setInt(1,v.getIdcli());
             instrucaoSQL.setInt(2,v.getIdcli());
-            instrucaoSQL.setDate(3,(Date)v.getData());
+            instrucaoSQL.setDate(3,sqlDate);
             
             //Executar a instrução SQL
             int linhasAfetadas = instrucaoSQL.executeUpdate();
