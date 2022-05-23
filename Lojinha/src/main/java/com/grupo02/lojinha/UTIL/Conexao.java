@@ -9,7 +9,7 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 
 /**
- *
+ * @author NatanDantas
  * @author rufin
  */
 public class Conexao {
@@ -27,9 +27,17 @@ public class Conexao {
     
     public static Connection CONEXAO;
 
+    /**
+     *Construtor da classe conexão
+     */
     public Conexao(){
     }
     
+    /**
+     * Método para se conectar ao banco de dados da loja, retorna um comando SQL
+     * @throws ClassNotFoundException
+     * @throws SQLException
+     */
     public static Connection abrirConexao() throws ClassNotFoundException,SQLException {
  
         URL = "jdbc:mysql://" + SERVER + ":3306/" +DATABASE + "?useTimezone=true&serverTimezone=UTC&useSSL=false";
@@ -72,10 +80,20 @@ public class Conexao {
         return CONEXAO;
     }
     
+    /**
+     * Método para verificar o status da conexão e 
+     * retorna o status da conexão na aplicação
+     * 
+     */
     public static String getStatusConexao() {
         return STATUS;
     }
     
+    /**
+     * Método para fechar a conexão com o banco de dados
+     * @return boolean - true: conexão fechada; false: conexão não fechada
+     * @throws SQLException
+     */
     public static boolean fecharConexao() throws SQLException {
  
         boolean retorno = false;

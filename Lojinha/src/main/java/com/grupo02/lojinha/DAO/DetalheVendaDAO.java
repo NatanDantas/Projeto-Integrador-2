@@ -10,10 +10,16 @@ import java.sql.Statement;
 import java.util.ArrayList;
 
 /**
- *
+ * @author NatanDantas
  * @author rufin
  */
 public class DetalheVendaDAO {
+
+    /**
+     * Método para salvar os detalhes das vendas feitas na tabela Detalhevenda
+     * @param dv - <code>ArrayList</code>
+     * @return ArrayList - Retorna uma ArrayList com os detalhes da venda salvos
+     */
     public static boolean salvar(ArrayList<DetalheVenda> dv)
     {
         boolean retorno = false;

@@ -15,11 +15,17 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 /**
- *
+ * @author NatanDantas
  * @author bruno.vrufino
  */
 public class VendaDAO {
-     public static boolean salvar(Venda v)
+
+    /**
+     * Método para salvar as vendas feitas na tabela Venda
+     * @param v - Objeto do tipo Venda
+     * @return boolean - true: Venda registrada; false: Venda não registrada
+     */
+    public static boolean salvar(Venda v)
     {
         boolean retorno;
         Connection conexao = null;

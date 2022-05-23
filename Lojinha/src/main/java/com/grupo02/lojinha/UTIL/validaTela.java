@@ -10,15 +10,29 @@ import java.util.ArrayList;
 import javax.swing.JTextField;
 
 /**
- *
+ * @author NatanDantas
  * @author rufin
  */
 public class validaTela {
+
+    /**
+     *Criação de uma ArrayList para armazenar os erros de validação de telas
+     */
     public static ArrayList<String> lstError = new ArrayList<>();
+
+    /**
+     * Método para registrar os erros de validação de tela
+     * @return ArrayList - Retorna uma ArrayList com os erros de validação 
+     */
     public static ArrayList<String> getErrorMessages(){
         return lstError;
     }
     
+    /**
+     * Método para verificar se o campo em específico foi preenchido ou não
+     * @param txt - <code>JTextField</code>
+     * @return boolean - true: Campo vazio; false: Campo preenchido 
+     */
     public static boolean isEmpty(JTextField txt){
         if(txt.getText().equals("")){
             return true;
@@ -26,6 +40,11 @@ public class validaTela {
         return false;
     }
     
+    /**
+     * Método para verificar se o tipo e formato do número digitado em tal campo é válido
+     * @param txt - <code>JTextField</code>
+     * @return boolean - true: Número válido; false: Número Inválido
+     */
     public static boolean authanticateNumber(JTextField txt){
         try{
             if(isEmpty(txt))

@@ -11,10 +11,16 @@ import java.sql.Statement;
 import java.util.ArrayList;
 
 /**
- *
+ * @author NatanDantas
  * @author bruno.vrufino
  */
 public class EnderecoDAO {
+
+    /**
+     * Método para salvar dados na tabela Endereco
+     * @param c - Objeto do tipo Endereco
+     * @return boolean - true: Endereço Inserido; false: Endereço Não Inserido
+     */
     public static boolean salvar(Endereco c)
     {
         boolean retorno = false;
@@ -92,6 +98,11 @@ public class EnderecoDAO {
         return retorno;
     }
     
+    /**
+     * Método para atualizar dados na tabela Endereco
+     * @param c - Objeto do tipo Endereco
+     * @return boolean - true: Endereco atualizado; false: Endereco não atualizado
+     */
     public static boolean atualizar(Endereco c)
     {
         boolean retorno = false;
@@ -153,6 +164,11 @@ public class EnderecoDAO {
         return retorno;
     }
     
+    /**
+     * Método para excluir dados da tabela Endereco
+     * @param cID - <code>Int</code>
+     * @return boolean - true: Dado Excluido; false: Dado não Excluido
+     */
     public static boolean excluir(int cID)
     {
         boolean retorno = false;
@@ -210,6 +226,10 @@ public class EnderecoDAO {
         return retorno;
     }
     
+    /**
+     * Criação de uma ArrayList para consultar os Endereços na tabela Endereco
+     * @return ArrayList - Retorna uma ArrayList com os dados pesquisados
+     */
     public static ArrayList<Endereco> consultarEnderecos()
     {
         ResultSet rs = null;

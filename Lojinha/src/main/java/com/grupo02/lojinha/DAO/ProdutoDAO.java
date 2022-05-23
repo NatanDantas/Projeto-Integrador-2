@@ -11,10 +11,16 @@ import java.sql.Statement;
 import java.util.ArrayList;
 
 /**
- *
+ * @author NatanDantas
  * @author rufin
  */
 public class ProdutoDAO {
+
+    /**
+     * Método para salvar/inserir dados na tabela Produto
+     * @param p - Objeto do tipo Produto
+     * @return boolean - true: Dado inserido; false: Dado não inserido
+     */
     public static boolean salvar(Produto p)
     {
         boolean retorno = false;
@@ -92,6 +98,11 @@ public class ProdutoDAO {
         return retorno;
     }
     
+    /**
+     * Método para atualizar dados da tabela Produto
+     * @param p - Objeto do tipo Produto
+     * @return boolean - true: Dados atualizados; false: Dados não atualizados
+     */
     public static boolean atualizar(Produto p)
     {
         boolean retorno = false;
@@ -155,6 +166,11 @@ public class ProdutoDAO {
         return retorno;
     }
     
+    /**
+     * Método para excluir dados da tabela Produto
+     * @param pID - <code>Int</code>
+     * @return boolean - true: Dado excluido; false: Dado não excluido
+     */
     public static boolean excluir(int pID)
     {
         boolean retorno = false;
@@ -212,6 +228,10 @@ public class ProdutoDAO {
         return retorno;
     }
     
+    /**
+     * Criação de uma ArrayList para consultar os produtos na tabela Produto
+     * @return ArrayList - Retorna uma ArrayList com os dados pesquisados
+     */
     public static ArrayList<Produto> consultarProdutos()
     {
         ResultSet rs = null;

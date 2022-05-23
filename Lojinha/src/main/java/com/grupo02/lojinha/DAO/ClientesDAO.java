@@ -15,10 +15,16 @@ import java.sql.Statement;
 import java.util.ArrayList;
 
 /**
- *
+ * @author NatanDantas
  * @author bruno.vrufino
  */
 public class ClientesDAO {
+
+    /**
+     * Método para salvar/inserir dados na tabela cliente
+     * @param c - Objeto do tipo Cliente
+     * @return boolean - true: Insert feito com sucesso; false:Insert não concluido 
+     */
     public static boolean salvar(Cliente c)
     {
         boolean retorno = false;
@@ -97,6 +103,11 @@ public class ClientesDAO {
         return retorno;
     }
     
+    /**
+     * Método para realizar um update na tabela cliente
+     * @param c - Objeto do tipo cliente
+     * @return boolean - true: Dado atualizado; false: Dado não atualizado
+     */
     public static boolean atualizar(Cliente c)
     {
         boolean retorno = false;
@@ -161,6 +172,11 @@ public class ClientesDAO {
         return retorno;
     }
     
+    /**
+     * Método para Excluir um dado da tabela cliente
+     * @param cID - <code>Int</code>
+     * @return boolean - true: Dado excluido; false: Dado não excluido
+     */
     public static boolean excluir(int cID)
     {
         boolean retorno = false;
@@ -218,6 +234,11 @@ public class ClientesDAO {
         return retorno;
     }
     
+    /**
+     * Array List que retorna os dados para o Método de pesquisa de cliente
+     * @return ArrayList - Retorna uma ArrayList com os dados pesquisados
+     * @see #consultarClientes(java.lang.String) 
+     */
     public static ArrayList<Cliente> consultarClientes()
     {
         ResultSet rs = null;
@@ -288,6 +309,11 @@ public class ClientesDAO {
         return listaClientes;
     }
     
+    /**
+     * Método para consultar a tabela cliente pelo nome e endereço do cliente
+     * @param nm - <code>String</code> 
+     * @return ArrayList - Retorna uma ArrayList com os dados pesquisados
+     */
     public static ArrayList<Cliente> consultarClientes(String nm)
     {
         ResultSet rs = null;
@@ -360,10 +386,20 @@ public class ClientesDAO {
         return listaClientes;
     }
 
+    /**
+     * Método para tratamento de erros no salvamento de dados na tabela cliente
+     * @param e - Objeto do tipo Endereco
+     * @return boolean - true: Erro tratado; false: Erro não tratado
+     */
     public static boolean salvar(Endereco e) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
+    /**
+     * Método para tratamento de erros na atualização de dados na tabela cliente
+     * @param e - Objeto do tipo Endereco
+     * @return boolean - true: Erro tratado; false: Erro não tratado
+     */
     public static boolean atualizar(Endereco e) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
