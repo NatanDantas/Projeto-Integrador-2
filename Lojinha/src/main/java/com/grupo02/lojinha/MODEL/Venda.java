@@ -13,6 +13,7 @@ public class Venda {
     private int idfunc;
     private Date data;
     private ArrayList<DetalheVenda> itensVenda;
+    private double valorTotal;
     
     public Venda(){
     
@@ -58,6 +59,14 @@ public class Venda {
 
     public void setItensVenda(ArrayList<DetalheVenda> itensVenda) {
         this.itensVenda = itensVenda;
+    }
+
+    public double getValorTotal() {
+        return valorTotal;
+    }
+
+    public void setValorTotal(double valorTotal) {
+        this.valorTotal = valorTotal;
     }
     
     

@@ -35,8 +35,8 @@ public class EnderecoDAO {
             //Passo 2 - DriverManager para abrir a conexão
             String URL = "jdbc:mysql://localhost:3306/perfumariabd?useTimezone=true&serverTimezone=UTC&useSSL=false";
             
-            //conexao = DriverManager.getConnection(URL, "root", "");
-            conexao = DriverManager.getConnection(URL, "root", "Br@15687899");
+            conexao = DriverManager.getConnection(URL, "root", "");
+            //conexao = DriverManager.getConnection(URL, "root", "Br@15687899");
             //conexao = GerenciadorConexao.abrirConexao();
             
             
@@ -122,7 +122,7 @@ public class EnderecoDAO {
             String URL = "jdbc:mysql://localhost:3306/perfumariabd?useTimezone=true&serverTimezone=UTC&useSSL=false";
             
             //conexao = DriverManager.getConnection(URL, "root", "");
-            conexao = DriverManager.getConnection(URL, "root", "Br@15687899");
+            //conexao = DriverManager.getConnection(URL, "root", "Br@15687899");
             
             instrucaoSQL = conexao.prepareStatement("UPDATE Endereco SET cep = ?, rua = ?, bairro = ?, numero = ?  WHERE id_endereco = ?");
             
@@ -248,8 +248,8 @@ public class EnderecoDAO {
             //Passo 2 - DriverManager para abrir a conexão
             String URL = "jdbc:mysql://localhost:3306/perfumariabd?useTimezone=true&serverTimezone=UTC&useSSL=false";
             
-            //conexao = DriverManager.getConnection(URL, "root", "");
-            conexao = DriverManager.getConnection(URL, "root", "Br@15687899");
+            conexao = DriverManager.getConnection(URL, "root", "");
+            //conexao = DriverManager.getConnection(URL, "root", "Br@15687899");
             
             //Passo 3 - Executo a instrução SQL
             instrucaoSQL = conexao.prepareStatement("SELECT * FROM Endereco;");

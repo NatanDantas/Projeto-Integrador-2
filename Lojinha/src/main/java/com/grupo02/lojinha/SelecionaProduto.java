@@ -11,14 +11,18 @@ import javax.swing.table.DefaultTableModel;
  */
 public class SelecionaProduto extends javax.swing.JFrame {
 
-    /**
-     * Creates new form SelecionaProduto
-     */
+    private TelaVenda telaVenda;
+    
     public SelecionaProduto() {
         initComponents();
         carregaTable();
     }
-
+    
+    public SelecionaProduto(TelaVenda tela) {
+        initComponents();
+        carregaTable();
+        this.telaVenda = tela;
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -75,11 +79,9 @@ public class SelecionaProduto extends javax.swing.JFrame {
 
     private void btnselectActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnselectActionPerformed
         DefaultTableModel model = (DefaultTableModel) tblProd.getModel();
-        TelaVenda tv = new TelaVenda();
         String id = model.getValueAt(tblProd.getSelectedRow(), 0).toString();
         String nm = model.getValueAt(tblProd.getSelectedRow(), 1).toString();
-        tv.preencheProd(id, nm);
-        tv.setVisible(true);
+        telaVenda.preencheProd(id, nm);
         this.dispose();
     }//GEN-LAST:event_btnselectActionPerformed
 

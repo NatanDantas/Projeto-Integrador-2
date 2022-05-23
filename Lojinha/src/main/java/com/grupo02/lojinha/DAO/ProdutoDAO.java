@@ -35,13 +35,13 @@ public class ProdutoDAO {
             //Passo 2 - DriverManager para abrir a conexão
             String URL = "jdbc:mysql://localhost:3306/perfumariabd?useTimezone=true&serverTimezone=UTC&useSSL=false";
             
-            //conexao = DriverManager.getConnection(URL, "root", "");
-            conexao = DriverManager.getConnection(URL, "root", "Br@15687899");
+            conexao = DriverManager.getConnection(URL, "root", "");
+            //conexao = DriverManager.getConnection(URL, "root", "Br@15687899");
             //conexao = GerenciadorConexao.abrirConexao();
             
             
             //Passo 3 - Executar uma instrução SQL
-            instrucaoSQL = conexao.prepareStatement("INSERT INTO Produto (nmProd,valor,descricao,qtdEstoque) VALUES(?, ?, ?, ?)"
+            instrucaoSQL = conexao.prepareStatement("INSERT INTO Produto (nmProd,valor,descricao,qtde) VALUES(?, ?, ?, ?)"
                                                     , Statement.RETURN_GENERATED_KEYS);
             
             //Tenta estabeler a conexão com o SGBD e cria comando a ser executado conexão
@@ -189,8 +189,8 @@ public class ProdutoDAO {
             //Passo 2 - DriverManager para abrir a conexão
             String URL = "jdbc:mysql://localhost:3306/perfumariabd?useTimezone=true&serverTimezone=UTC&useSSL=false";
             
-            //conexao = DriverManager.getConnection(URL, "root", "");
-            conexao = DriverManager.getConnection(URL, "root", "Br@15687899");
+            conexao = DriverManager.getConnection(URL, "root", "");
+            //conexao = DriverManager.getConnection(URL, "root", "Br@15687899");
             
             instrucaoSQL = conexao.prepareStatement("DELETE FROM Produto WHERE id_Prod = ?");
             
@@ -250,8 +250,8 @@ public class ProdutoDAO {
             //Passo 2 - DriverManager para abrir a conexão
             String URL = "jdbc:mysql://localhost:3306/perfumariabd?allowPublicKeyRetrieval=true&useSSL=false?useTimezone=true&serverTimezone=UTC&useSSL=false";
             
-            //conexao = DriverManager.getConnection(URL, "root", "");
-            conexao = DriverManager.getConnection(URL, "root", "Br@15687899");
+            conexao = DriverManager.getConnection(URL, "root", "");
+            //conexao = DriverManager.getConnection(URL, "root", "Br@15687899");
             
             //Passo 3 - Executo a instrução SQL
             instrucaoSQL = conexao.prepareStatement("SELECT * FROM Produto");
@@ -269,7 +269,7 @@ public class ProdutoDAO {
                 p.setNmProd(rs.getString("nmProd"));
                 p.setValor(rs.getDouble("valor"));
                 p.setDescricao(rs.getString("descricao"));
-                p.setQtde(rs.getInt("qtdEstoque"));
+                p.setQtde(rs.getInt("qtde"));
                
                 //Adiciono na listaClientes
                 listaProdutos.add(p);

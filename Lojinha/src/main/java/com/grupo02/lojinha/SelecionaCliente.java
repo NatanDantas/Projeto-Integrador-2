@@ -15,12 +15,18 @@ import javax.swing.table.DefaultTableModel;
  */
 public class SelecionaCliente extends javax.swing.JFrame {
 
-    /**
-     * Creates new form SelecionaCliente
-     */
+    public TelaVenda telaVenda;
+    
+    
     public SelecionaCliente() {
         initComponents();
         carregaTable();
+    }
+    
+    public SelecionaCliente(TelaVenda tela) {
+        initComponents();
+        carregaTable();
+        this.telaVenda = tela;
     }
 
     /**
@@ -82,11 +88,10 @@ public class SelecionaCliente extends javax.swing.JFrame {
 
     private void btnSelectActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSelectActionPerformed
         DefaultTableModel model = (DefaultTableModel) tblCli.getModel();
-        TelaVenda tv = new TelaVenda();
+        //TelaVenda tv = new TelaVenda();
         String id = model.getValueAt(tblCli.getSelectedRow(), 0).toString();
-        String nm = model.getValueAt(tblCli.getSelectedRow(), 1).toString();
-        tv.preencheCli(id, nm);
-        tv.setVisible(true);
+        String nm = model.getValueAt(tblCli.getSelectedRow(), 1).toString();            
+        telaVenda.preencheCli(id, nm);
         this.dispose();
     }//GEN-LAST:event_btnSelectActionPerformed
 

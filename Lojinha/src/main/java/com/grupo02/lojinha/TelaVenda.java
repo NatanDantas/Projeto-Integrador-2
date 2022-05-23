@@ -288,13 +288,12 @@ public class TelaVenda extends javax.swing.JFrame {
     }//GEN-LAST:event_btnCarrinhoActionPerformed
 
     private void btnSelectProdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSelectProdActionPerformed
-        SelecionaProduto sp = new SelecionaProduto();
+        SelecionaProduto sp = new SelecionaProduto(this);
         sp.setVisible(true);
-        this.dispose();
     }//GEN-LAST:event_btnSelectProdActionPerformed
 
     private void btnSelectCliActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSelectCliActionPerformed
-        SelecionaCliente sc = new SelecionaCliente();
+        SelecionaCliente sc = new SelecionaCliente(this);
         sc.setVisible(true);
     }//GEN-LAST:event_btnSelectCliActionPerformed
 
