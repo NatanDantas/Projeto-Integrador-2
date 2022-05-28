@@ -18,7 +18,7 @@ public class DetalheVendaDAO {
     /**
      * Método para salvar os detalhes das vendas feitas na tabela Detalhevenda
      * @param dv - <code>ArrayList</code>
-     * @return ArrayList - Retorna uma ArrayList com os detalhes da venda salvos
+     * @return boolean - Retorna um boolean com true para salvo com sucesso  e false para caso algo de errado
      */
     public static boolean salvar(ArrayList<DetalheVenda> dv)
     {

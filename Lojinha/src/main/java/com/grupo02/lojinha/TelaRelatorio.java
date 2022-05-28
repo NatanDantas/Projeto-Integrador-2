@@ -5,6 +5,14 @@
  */
 package com.grupo02.lojinha;
 
+import com.grupo02.lojinha.DAO.RelatoriosDAO;
+import com.grupo02.lojinha.MODEL.DetalheVenda;
+import com.grupo02.lojinha.MODEL.Venda;
+import java.util.ArrayList;
+import java.sql.Date;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author jose.ncdantas
@@ -16,6 +24,7 @@ public class TelaRelatorio extends javax.swing.JFrame {
      */
     public TelaRelatorio() {
         initComponents();
+        carregaTable(this.tblVenda);
     }
 
     /**
@@ -30,30 +39,30 @@ public class TelaRelatorio extends javax.swing.JFrame {
         jTabbedPane1 = new javax.swing.JTabbedPane();
         jPanel1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tblVenda = new javax.swing.JTable();
         jPanel3 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jButton2 = new javax.swing.JButton();
-        jDateChooser3 = new com.toedter.calendar.JDateChooser();
-        jDateChooser4 = new com.toedter.calendar.JDateChooser();
-        jButton1 = new javax.swing.JButton();
+        btnVerificar = new javax.swing.JButton();
+        dtInicio = new com.toedter.calendar.JDateChooser();
+        dtFim = new com.toedter.calendar.JDateChooser();
+        btnDetalhes = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTable2 = new javax.swing.JTable();
+        tblDtVenda = new javax.swing.JTable();
         jButton3 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tblVenda.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null}
+
             },
             new String [] {
                 "Codigo da Venda", "Data:", "Cliente", "Valor Total"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(tblVenda);
 
         jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder("Filtro"));
 
@@ -61,7 +70,12 @@ public class TelaRelatorio extends javax.swing.JFrame {
 
         jLabel2.setText("E:");
 
-        jButton2.setText("Verificar");
+        btnVerificar.setText("Verificar");
+        btnVerificar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnVerificarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -71,13 +85,13 @@ public class TelaRelatorio extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jDateChooser3, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(dtInicio, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jDateChooser4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(dtFim, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGap(18, 18, 18)
-                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnVerificar, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(83, 83, 83))
         );
         jPanel3Layout.setVerticalGroup(
@@ -96,16 +110,21 @@ public class TelaRelatorio extends javax.swing.JFrame {
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnVerificar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addGroup(jPanel3Layout.createSequentialGroup()
                                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jDateChooser4, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jDateChooser3, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(dtFim, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(dtInicio, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(0, 0, Short.MAX_VALUE)))))
                 .addContainerGap())
         );
 
-        jButton1.setText("Ver Mais");
+        btnDetalhes.setText("Ver Mais");
+        btnDetalhes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDetalhesActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -117,7 +136,7 @@ public class TelaRelatorio extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 552, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnDetalhes, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 32, Short.MAX_VALUE))
                     .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
@@ -134,13 +153,13 @@ public class TelaRelatorio extends javax.swing.JFrame {
                         .addGap(33, 33, 33))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(18, 18, 18)
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnDetalhes, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
 
         jTabbedPane1.addTab("Sintético", jPanel1);
 
-        jTable2.setModel(new javax.swing.table.DefaultTableModel(
+        tblDtVenda.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null},
                 {null, null, null},
@@ -151,7 +170,7 @@ public class TelaRelatorio extends javax.swing.JFrame {
                 "Produto:", "Quantidade:", "Valor Total"
             }
         ));
-        jScrollPane2.setViewportView(jTable2);
+        jScrollPane2.setViewportView(tblDtVenda);
 
         jButton3.setText("Voltar");
 
@@ -200,6 +219,21 @@ public class TelaRelatorio extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btnVerificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVerificarActionPerformed
+         Date dtI = new java.sql.Date(dtInicio.getDate().getTime());
+         Date dtF = new java.sql.Date(dtFim.getDate().getTime());
+         clearTable(tblVenda);
+         carregaTable(dtI, dtF);
+    }//GEN-LAST:event_btnVerificarActionPerformed
+
+    private void btnDetalhesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDetalhesActionPerformed
+        DefaultTableModel model = (DefaultTableModel) tblVenda.getModel();
+        int idV = (int)model.getValueAt(tblVenda.getSelectedRow(), 0);
+        clearTable(tblDtVenda);
+        carregaTable(idV);   
+        jTabbedPane1.setSelectedIndex(1);
+    }//GEN-LAST:event_btnDetalhesActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -234,13 +268,60 @@ public class TelaRelatorio extends javax.swing.JFrame {
             }
         });
     }
+    
+    public final void carregaTable(JTable tbl){
+        DefaultTableModel model = (DefaultTableModel) tbl.getModel();
+        ArrayList<Venda> lstComp = RelatoriosDAO.consultarVendas();
+        Object dadoLinha[] = new Object[4];
+        for(int i = 0; i < lstComp.size() ; i++){ 
+            dadoLinha[0] = lstComp.get(i).getIdVenda();
+            dadoLinha[1] = lstComp.get(i).getData();
+            dadoLinha[2] = lstComp.get(i).getIdcli();
+            //dadoLinha[3] = lstComp.get(i).getValorTotal();
+       
+            model.addRow(dadoLinha);
+        }
+    }
+    
+    public final void carregaTable(int idv){
+        DefaultTableModel model = (DefaultTableModel) tblDtVenda.getModel();
+        ArrayList<DetalheVenda> lstComp = RelatoriosDAO.consultarDetalhe(idv);
+        Object dadoLinha[] = new Object[3];
+        for(int i = 0; i < lstComp.size() ; i++){ 
+            dadoLinha[0] = lstComp.get(i).getProd().getNmProd();
+            dadoLinha[1] = lstComp.get(i).getQuantidade();
+            dadoLinha[2] = lstComp.get(i).getValor();      
+            model.addRow(dadoLinha);
+        }
+    }
+    
+    public final void carregaTable(Date dtI, Date dtF){
+        DefaultTableModel model = (DefaultTableModel) tblVenda.getModel();
+        ArrayList<Venda> lstComp = RelatoriosDAO.consultarVendas(dtI,dtF);
+        Object dadoLinha[] = new Object[4];
+        for(int i = 0; i < lstComp.size() ; i++){ 
+            dadoLinha[0] = lstComp.get(i).getIdVenda();
+            dadoLinha[1] = lstComp.get(i).getData();
+            dadoLinha[3] = lstComp.get(i).getIdcli();
+            //dadoLinha[4] = lstComp.get(i).getValorTotal();
+      
+            model.addRow(dadoLinha);
+        }
+    }
+    
+    public void clearTable(JTable tbl){
+        DefaultTableModel model = (DefaultTableModel) tbl.getModel();
+        while(model.getRowCount() > 0){
+            model.removeRow(0);
+        }
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
+    private javax.swing.JButton btnDetalhes;
+    private javax.swing.JButton btnVerificar;
+    private com.toedter.calendar.JDateChooser dtFim;
+    private com.toedter.calendar.JDateChooser dtInicio;
     private javax.swing.JButton jButton3;
-    private com.toedter.calendar.JDateChooser jDateChooser3;
-    private com.toedter.calendar.JDateChooser jDateChooser4;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
@@ -249,7 +330,7 @@ public class TelaRelatorio extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTabbedPane jTabbedPane1;
-    private javax.swing.JTable jTable1;
-    private javax.swing.JTable jTable2;
+    private javax.swing.JTable tblDtVenda;
+    private javax.swing.JTable tblVenda;
     // End of variables declaration//GEN-END:variables
 }

@@ -39,8 +39,8 @@ public class ClientesDAO {
             //Passo 2 - DriverManager para abrir a conexão
             String URL = "jdbc:mysql://localhost:3306/perfumariabd?useTimezone=true&serverTimezone=UTC&useSSL=false";
             
-            conexao = DriverManager.getConnection(URL, "root", "");
-            //conexao = DriverManager.getConnection(URL, "root", "Br@15687899");
+            //conexao = DriverManager.getConnection(URL, "root", "");
+            conexao = DriverManager.getConnection(URL, "root", "Br@15687899");
             //conexao = GerenciadorConexao.abrirConexao();
             
             
@@ -257,8 +257,8 @@ public class ClientesDAO {
             //Passo 2 - DriverManager para abrir a conexão
             String URL = "jdbc:mysql://localhost:3306/perfumariabd?allowPublicKeyRetrieval=true&useSSL=false?useTimezone=true&serverTimezone=UTC&useSSL=false";
             
-            conexao = DriverManager.getConnection(URL, "root", "");
-            //conexao = DriverManager.getConnection(URL, "root", "Br@15687899");
+            //conexao = DriverManager.getConnection(URL, "root", "");
+            conexao = DriverManager.getConnection(URL, "root", "Br@15687899");
             
             //Passo 3 - Executo a instrução SQL
             instrucaoSQL = conexao.prepareStatement("SELECT * FROM Cliente inner join Endereco on Cliente.id_enderecoCli = Endereco.id_endereco");
@@ -310,7 +310,7 @@ public class ClientesDAO {
     }
     
     /**
-     * Método para consultar a tabela cliente pelo nome e endereço do cliente
+     * Método para consultar a tabela cliente pelo nome do cliente
      * @param nm - <code>String</code> 
      * @return ArrayList - Retorna uma ArrayList com os dados pesquisados
      */
@@ -386,22 +386,4 @@ public class ClientesDAO {
         return listaClientes;
     }
 
-    /**
-     * Método para tratamento de erros no salvamento de dados na tabela cliente
-     * @param e - Objeto do tipo Endereco
-     * @return boolean - true: Erro tratado; false: Erro não tratado
-     */
-    public static boolean salvar(Endereco e) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
-    /**
-     * Método para tratamento de erros na atualização de dados na tabela cliente
-     * @param e - Objeto do tipo Endereco
-     * @return boolean - true: Erro tratado; false: Erro não tratado
-     */
-    public static boolean atualizar(Endereco e) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-    
 }

@@ -63,7 +63,7 @@
                           <Group type="102" attributes="0">
                               <Component id="jScrollPane1" min="-2" pref="552" max="-2" attributes="0"/>
                               <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                              <Component id="jButton1" min="-2" pref="116" max="-2" attributes="0"/>
+                              <Component id="btnDetalhes" min="-2" pref="116" max="-2" attributes="0"/>
                               <EmptySpace min="0" pref="32" max="32767" attributes="0"/>
                           </Group>
                           <Component id="jPanel3" max="32767" attributes="0"/>
@@ -85,7 +85,7 @@
                           </Group>
                           <Group type="102" alignment="0" attributes="0">
                               <EmptySpace type="separate" max="-2" attributes="0"/>
-                              <Component id="jButton1" min="-2" pref="65" max="-2" attributes="0"/>
+                              <Component id="btnDetalhes" min="-2" pref="65" max="-2" attributes="0"/>
                               <EmptySpace max="32767" attributes="0"/>
                           </Group>
                       </Group>
@@ -101,10 +101,10 @@
 
               <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
               <SubComponents>
-                <Component class="javax.swing.JTable" name="jTable1">
+                <Component class="javax.swing.JTable" name="tblVenda">
                   <Properties>
                     <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-                      <Table columnCount="4" rowCount="1">
+                      <Table columnCount="4" rowCount="0">
                         <Column editable="true" title="Codigo da Venda" type="java.lang.Object"/>
                         <Column editable="true" title="Data:" type="java.lang.Object"/>
                         <Column editable="true" title="Cliente" type="java.lang.Object"/>
@@ -131,13 +131,13 @@
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="jDateChooser3" min="-2" pref="204" max="-2" attributes="0"/>
+                          <Component id="dtInicio" min="-2" pref="204" max="-2" attributes="0"/>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
                           <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="jDateChooser4" max="32767" attributes="0"/>
+                          <Component id="dtFim" max="32767" attributes="0"/>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
-                          <Component id="jButton2" min="-2" pref="135" max="-2" attributes="0"/>
+                          <Component id="btnVerificar" min="-2" pref="135" max="-2" attributes="0"/>
                           <EmptySpace min="-2" pref="83" max="-2" attributes="0"/>
                       </Group>
                   </Group>
@@ -162,11 +162,11 @@
                               <Group type="102" attributes="0">
                                   <EmptySpace max="32767" attributes="0"/>
                                   <Group type="103" groupAlignment="0" attributes="0">
-                                      <Component id="jButton2" max="32767" attributes="0"/>
+                                      <Component id="btnVerificar" max="32767" attributes="0"/>
                                       <Group type="102" attributes="0">
                                           <Group type="103" groupAlignment="1" attributes="0">
-                                              <Component id="jDateChooser4" alignment="1" min="-2" pref="31" max="-2" attributes="0"/>
-                                              <Component id="jDateChooser3" alignment="1" min="-2" pref="30" max="-2" attributes="0"/>
+                                              <Component id="dtFim" alignment="1" min="-2" pref="31" max="-2" attributes="0"/>
+                                              <Component id="dtInicio" alignment="1" min="-2" pref="30" max="-2" attributes="0"/>
                                           </Group>
                                           <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                                       </Group>
@@ -189,21 +189,27 @@
                     <Property name="text" type="java.lang.String" value="E:"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JButton" name="jButton2">
+                <Component class="javax.swing.JButton" name="btnVerificar">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Verificar"/>
                   </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnVerificarActionPerformed"/>
+                  </Events>
                 </Component>
-                <Component class="com.toedter.calendar.JDateChooser" name="jDateChooser3">
+                <Component class="com.toedter.calendar.JDateChooser" name="dtInicio">
                 </Component>
-                <Component class="com.toedter.calendar.JDateChooser" name="jDateChooser4">
+                <Component class="com.toedter.calendar.JDateChooser" name="dtFim">
                 </Component>
               </SubComponents>
             </Container>
-            <Component class="javax.swing.JButton" name="jButton1">
+            <Component class="javax.swing.JButton" name="btnDetalhes">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Ver Mais"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnDetalhesActionPerformed"/>
+              </Events>
             </Component>
           </SubComponents>
         </Container>
@@ -252,7 +258,7 @@
 
               <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
               <SubComponents>
-                <Component class="javax.swing.JTable" name="jTable2">
+                <Component class="javax.swing.JTable" name="tblDtVenda">
                   <Properties>
                     <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
                       <Table columnCount="3" rowCount="4">

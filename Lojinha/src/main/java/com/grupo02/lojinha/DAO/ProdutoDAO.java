@@ -35,8 +35,8 @@ public class ProdutoDAO {
             //Passo 2 - DriverManager para abrir a conexão
             String URL = "jdbc:mysql://localhost:3306/perfumariabd?useTimezone=true&serverTimezone=UTC&useSSL=false";
             
-            conexao = DriverManager.getConnection(URL, "root", "");
-            //conexao = DriverManager.getConnection(URL, "root", "Br@15687899");
+            //conexao = DriverManager.getConnection(URL, "root", "");
+            conexao = DriverManager.getConnection(URL, "root", "Br@15687899");
             //conexao = GerenciadorConexao.abrirConexao();
             
             
@@ -189,8 +189,8 @@ public class ProdutoDAO {
             //Passo 2 - DriverManager para abrir a conexão
             String URL = "jdbc:mysql://localhost:3306/perfumariabd?useTimezone=true&serverTimezone=UTC&useSSL=false";
             
-            conexao = DriverManager.getConnection(URL, "root", "");
-            //conexao = DriverManager.getConnection(URL, "root", "Br@15687899");
+            //conexao = DriverManager.getConnection(URL, "root", "");
+            conexao = DriverManager.getConnection(URL, "root", "Br@15687899");
             
             instrucaoSQL = conexao.prepareStatement("DELETE FROM Produto WHERE id_Prod = ?");
             
@@ -250,8 +250,8 @@ public class ProdutoDAO {
             //Passo 2 - DriverManager para abrir a conexão
             String URL = "jdbc:mysql://localhost:3306/perfumariabd?allowPublicKeyRetrieval=true&useSSL=false?useTimezone=true&serverTimezone=UTC&useSSL=false";
             
-            conexao = DriverManager.getConnection(URL, "root", "");
-            //conexao = DriverManager.getConnection(URL, "root", "Br@15687899");
+            //conexao = DriverManager.getConnection(URL, "root", "");
+            conexao = DriverManager.getConnection(URL, "root", "Br@15687899");
             
             //Passo 3 - Executo a instrução SQL
             instrucaoSQL = conexao.prepareStatement("SELECT * FROM Produto");
@@ -294,5 +294,61 @@ public class ProdutoDAO {
         }
         
         return listaProdutos;
+    }
+     public static Produto consultarProduto(int idP)
+    {
+        ResultSet rs = null;
+        Connection conexao = null;
+        PreparedStatement instrucaoSQL = null; 
+        Produto p = new Produto();  
+        
+        try {
+            
+            //conexao = GerenciadorConexao.abrirConexao();
+            //Passo 1
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            
+            //Passo 2 - DriverManager para abrir a conexão
+            String URL = "jdbc:mysql://localhost:3306/perfumariabd?allowPublicKeyRetrieval=true&useSSL=false?useTimezone=true&serverTimezone=UTC&useSSL=false";
+            
+            //conexao = DriverManager.getConnection(URL, "root", "");
+            conexao = DriverManager.getConnection(URL, "root", "Br@15687899");
+            
+            //Passo 3 - Executo a instrução SQL
+            instrucaoSQL = conexao.prepareStatement("SELECT * FROM Produto where id_Prod = ?");
+            instrucaoSQL.setInt(1,idP);
+            
+            //Executa a Query (Consulta) - Retorna um objeto da classe ResultSet
+            rs = instrucaoSQL.executeQuery();
+            
+            //Percorrer o resultSet 
+            while(rs.next())
+            {
+                p.setIdProd(rs.getInt("id_Prod"));
+                p.setNmProd(rs.getString("nmProd"));
+                p.setValor(rs.getDouble("valor"));
+                p.setDescricao(rs.getString("descricao"));
+                p.setQtde(rs.getInt("qtdEstoque"));
+            }
+            
+        }catch (SQLException | ClassNotFoundException ex) {
+            System.out.println(ex.getMessage());
+            p = null;
+        } finally{
+            //Libero os recursos da memória
+            try {
+                if(rs!=null)
+                    rs.close();                
+                if(instrucaoSQL!=null)
+                    instrucaoSQL.close();
+                
+                conexao.close();
+                //GerenciadorConexao.fecharConexao();
+                        
+              } catch (SQLException ex) {
+             }
+        }
+        
+        return p;
     }
 }
