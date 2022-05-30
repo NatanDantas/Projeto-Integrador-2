@@ -104,15 +104,17 @@ public class TelaVenda extends javax.swing.JFrame {
         jLabel5.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel5.setText("Cliente:");
 
+        txtProduto.setEditable(false);
+
         jLabel6.setText("ID:");
+
+        txtIdProd.setEditable(false);
 
         jLabel7.setText("ID:");
 
         txtIdCli.setEditable(false);
-        txtIdCli.setText("1");
 
         txtCli.setEditable(false);
-        txtCli.setText("Bruno Viana");
 
         btnSelectProd.setText("Selecionar");
         btnSelectProd.addActionListener(new java.awt.event.ActionListener() {
@@ -325,11 +327,14 @@ public class TelaVenda extends javax.swing.JFrame {
         v.setIdcli(Integer.parseInt(txtIdCli.getText()));
         v.setIdfunc(1);
         v.setItensVenda(itensCarrinho);
+        v.setValorTotal(valorTotal);
         if(VendaDAO.salvar(v)){
             JOptionPane.showMessageDialog(this, "Venda Concluida Com Sucesso","Sucesso",JOptionPane.INFORMATION_MESSAGE);
-            itensCarrinho = null;
+            itensCarrinho = new ArrayList<DetalheVenda>();
+            valor = 0;
+            valorTotal = 0;
             clearTable();
-            
+            lblVTotal.setText("Valor Total: " + valorTotal);
         }
     }//GEN-LAST:event_btnConfirmarVendaActionPerformed
 
@@ -368,9 +373,10 @@ public class TelaVenda extends javax.swing.JFrame {
         });
     }
     
-    public void preencheProd(String id, String nm){
+    public void preencheProd(String id, String nm, double va){
         txtIdProd.setText(id);
         txtProduto.setText(nm);
+        valor = va;
     }
     public void preencheCli(String id, String nm){
         txtIdCli.setText(id);

@@ -43,7 +43,7 @@ public class SelecionaProduto extends javax.swing.JFrame {
 
             },
             new String [] {
-                "ID Cliente", "Nome"
+                "ID Cliente", "Nome", "Valor"
             }
         ));
         jScrollPane1.setViewportView(tblProd);
@@ -60,18 +60,18 @@ public class SelecionaProduto extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 286, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 370, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
                 .addComponent(btnselect, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 14, Short.MAX_VALUE))
+                .addGap(16, 16, 16))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 300, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
-                .addGap(68, 68, 68)
+                .addGap(78, 78, 78)
                 .addComponent(btnselect, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(188, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
@@ -81,7 +81,8 @@ public class SelecionaProduto extends javax.swing.JFrame {
         DefaultTableModel model = (DefaultTableModel) tblProd.getModel();
         String id = model.getValueAt(tblProd.getSelectedRow(), 0).toString();
         String nm = model.getValueAt(tblProd.getSelectedRow(), 1).toString();
-        telaVenda.preencheProd(id, nm);
+        double va = (Double)model.getValueAt(tblProd.getSelectedRow(), 2);
+        telaVenda.preencheProd(id, nm, va);
         this.dispose();
     }//GEN-LAST:event_btnselectActionPerformed
 
@@ -123,10 +124,11 @@ public class SelecionaProduto extends javax.swing.JFrame {
     public final void carregaTable(){
         DefaultTableModel model = (DefaultTableModel) tblProd.getModel();
         ArrayList<Produto> lstComp = ProdutoDAO.consultarProdutos();
-        Object dadoLinha[] = new Object[2];
+        Object dadoLinha[] = new Object[3];
         for(int i = 0; i < lstComp.size() ; i++){ 
             dadoLinha[0] = lstComp.get(i).getIdProd();
             dadoLinha[1] = lstComp.get(i).getNmProd();
+            dadoLinha[2] = lstComp.get(i).getValor();
             model.addRow(dadoLinha);
         }
     }

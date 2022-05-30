@@ -277,7 +277,7 @@ public class TelaRelatorio extends javax.swing.JFrame {
             dadoLinha[0] = lstComp.get(i).getIdVenda();
             dadoLinha[1] = lstComp.get(i).getData();
             dadoLinha[2] = lstComp.get(i).getIdcli();
-            //dadoLinha[3] = lstComp.get(i).getValorTotal();
+            dadoLinha[3] = lstComp.get(i).getValorTotal();
        
             model.addRow(dadoLinha);
         }

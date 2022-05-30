@@ -126,7 +126,7 @@
                               <Component id="txtTelefone" linkSize="1" max="32767" attributes="0"/>
                               <Component id="txtCelular" linkSize="1" max="32767" attributes="0"/>
                           </Group>
-                          <EmptySpace pref="85" max="32767" attributes="0"/>
+                          <EmptySpace pref="221" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -230,13 +230,13 @@
                                       </Group>
                                       <Component id="txtRua" max="32767" attributes="0"/>
                                   </Group>
+                                  <EmptySpace min="-2" pref="29" max="-2" attributes="0"/>
+                                  <Component id="jLabel6" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Component id="txtNum" min="-2" pref="44" max="-2" attributes="0"/>
                               </Group>
                           </Group>
-                          <EmptySpace pref="21" max="32767" attributes="0"/>
-                          <Component id="jLabel6" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Component id="txtNum" min="-2" pref="44" max="-2" attributes="0"/>
-                          <EmptySpace max="-2" attributes="0"/>
+                          <EmptySpace pref="132" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -328,15 +328,15 @@
                               <Group type="102" attributes="0">
                                   <Component id="jLabel9" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                  <Component id="jComboBox1" min="-2" pref="93" max="-2" attributes="0"/>
+                                  <Component id="cbmCargo" min="-2" pref="93" max="-2" attributes="0"/>
                                   <EmptySpace min="-2" pref="37" max="-2" attributes="0"/>
                                   <Component id="jLabel11" min="-2" max="-2" attributes="0"/>
                               </Group>
                           </Group>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                              <Component id="txtLogin" max="32767" attributes="0"/>
-                              <Component id="txtSenha" pref="145" max="32767" attributes="0"/>
+                              <Component id="txtLogin" pref="145" max="32767" attributes="0"/>
+                              <Component id="txtSenha" max="32767" attributes="0"/>
                           </Group>
                           <EmptySpace max="32767" attributes="0"/>
                       </Group>
@@ -350,7 +350,7 @@
                                   <EmptySpace min="-2" pref="19" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="3" attributes="0">
                                       <Component id="jLabel9" alignment="3" min="-2" max="-2" attributes="0"/>
-                                      <Component id="jComboBox1" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="cbmCargo" alignment="3" min="-2" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
                               <Group type="102" alignment="1" attributes="0">
@@ -366,7 +366,7 @@
                               <Component id="jLabel12" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="txtSenha" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
-                          <EmptySpace max="32767" attributes="0"/>
+                          <EmptySpace pref="9" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -377,7 +377,7 @@
                     <Property name="text" type="java.lang.String" value="Cargo:"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JComboBox" name="jComboBox1">
+                <Component class="javax.swing.JComboBox" name="cbmCargo">
                   <Properties>
                     <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
                       <StringArray count="3">
@@ -403,7 +403,7 @@
                     <Property name="text" type="java.lang.String" value="Senha:"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JPasswordField" name="txtSenha">
+                <Component class="javax.swing.JTextField" name="txtSenha">
                 </Component>
               </SubComponents>
             </Container>
@@ -423,9 +423,17 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="1" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="1" attributes="0">
-                          <Component id="jPanel6" alignment="1" max="32767" attributes="0"/>
-                          <Component id="jScrollPane2" alignment="1" pref="0" max="32767" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="jPanel6" max="32767" attributes="0"/>
+                          <Group type="102" attributes="0">
+                              <Component id="jScrollPane2" pref="589" max="32767" attributes="0"/>
+                              <EmptySpace min="-2" pref="15" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="btnDeletar" alignment="1" min="-2" max="-2" attributes="0"/>
+                                  <Component id="btnEditar" alignment="1" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace min="-2" pref="1" max="-2" attributes="0"/>
+                          </Group>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
@@ -435,10 +443,21 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="1" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="jPanel6" min="-2" pref="106" max="-2" attributes="0"/>
-                      <EmptySpace pref="36" max="32767" attributes="0"/>
-                      <Component id="jScrollPane2" min="-2" pref="284" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
+                      <Component id="jPanel6" min="-2" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="102" attributes="0">
+                              <EmptySpace pref="37" max="32767" attributes="0"/>
+                              <Component id="jScrollPane2" min="-2" pref="284" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="102" alignment="0" attributes="0">
+                              <EmptySpace min="-2" pref="104" max="-2" attributes="0"/>
+                              <Component id="btnEditar" min="-2" pref="42" max="-2" attributes="0"/>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <Component id="btnDeletar" min="-2" pref="47" max="-2" attributes="0"/>
+                              <EmptySpace max="32767" attributes="0"/>
+                          </Group>
+                      </Group>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -451,20 +470,22 @@
 
               <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
               <SubComponents>
-                <Component class="javax.swing.JTable" name="jTable2">
+                <Component class="javax.swing.JTable" name="tblFunc">
                   <Properties>
                     <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-                      <Table columnCount="10" rowCount="4">
+                      <Table columnCount="12" rowCount="0">
+                        <Column editable="false" title="IDFunc" type="java.lang.Object"/>
                         <Column editable="false" title="Nome:" type="java.lang.Object"/>
                         <Column editable="false" title="CPF:" type="java.lang.Object"/>
                         <Column editable="false" title="Telefone:" type="java.lang.Object"/>
                         <Column editable="false" title="Celular" type="java.lang.Object"/>
+                        <Column editable="false" title="Cargo" type="java.lang.Object"/>
+                        <Column editable="false" title="Login" type="java.lang.Object"/>
+                        <Column editable="false" title="Senha" type="java.lang.Object"/>
                         <Column editable="false" title="CEP" type="java.lang.Object"/>
                         <Column editable="false" title="Rua" type="java.lang.Object"/>
                         <Column editable="false" title="Numero" type="java.lang.Object"/>
                         <Column editable="false" title="Bairro" type="java.lang.Object"/>
-                        <Column editable="false" title="Editar" type="java.lang.Object"/>
-                        <Column editable="false" title="Deletar" type="java.lang.Object"/>
                       </Table>
                     </Property>
                   </Properties>
@@ -487,13 +508,10 @@
                           <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
                           <Component id="jLabel10" min="-2" max="-2" attributes="0"/>
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                          <Component id="jTextField8" min="-2" pref="194" max="-2" attributes="0"/>
-                          <EmptySpace pref="265" max="32767" attributes="0"/>
-                      </Group>
-                      <Group type="102" alignment="1" attributes="0">
+                          <Component id="txtFiltro" min="-2" pref="194" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="40" max="-2" attributes="0"/>
+                          <Component id="btnFiltro" min="-2" pref="151" max="-2" attributes="0"/>
                           <EmptySpace max="32767" attributes="0"/>
-                          <Component id="jButton3" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -503,11 +521,10 @@
                           <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="jLabel10" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="jTextField8" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="txtFiltro" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="btnFiltro" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
-                          <EmptySpace max="32767" attributes="0"/>
-                          <Component id="jButton3" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace min="-2" pref="23" max="-2" attributes="0"/>
+                          <EmptySpace pref="33" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -518,18 +535,34 @@
                     <Property name="text" type="java.lang.String" value="Nome:"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JTextField" name="jTextField8">
+                <Component class="javax.swing.JTextField" name="txtFiltro">
                 </Component>
-                <Component class="javax.swing.JButton" name="jButton3">
+                <Component class="javax.swing.JButton" name="btnFiltro">
                   <Properties>
-                    <Property name="text" type="java.lang.String" value="Filtrar"/>
+                    <Property name="text" type="java.lang.String" value="Filtrar/Atualizar"/>
                   </Properties>
                   <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton3ActionPerformed"/>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnFiltroActionPerformed"/>
                   </Events>
                 </Component>
               </SubComponents>
             </Container>
+            <Component class="javax.swing.JButton" name="btnEditar">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Editar"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnEditarActionPerformed"/>
+              </Events>
+            </Component>
+            <Component class="javax.swing.JButton" name="btnDeletar">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Deletar"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnDeletarActionPerformed"/>
+              </Events>
+            </Component>
           </SubComponents>
         </Container>
       </SubComponents>

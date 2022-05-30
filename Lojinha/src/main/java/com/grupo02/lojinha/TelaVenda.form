@@ -245,6 +245,9 @@
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="txtProduto">
+          <Properties>
+            <Property name="editable" type="boolean" value="false"/>
+          </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel6">
           <Properties>
@@ -252,6 +255,9 @@
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="txtIdProd">
+          <Properties>
+            <Property name="editable" type="boolean" value="false"/>
+          </Properties>
         </Component>
         <Component class="javax.swing.JSpinner" name="spnQtd">
         </Component>
@@ -263,13 +269,11 @@
         <Component class="javax.swing.JTextField" name="txtIdCli">
           <Properties>
             <Property name="editable" type="boolean" value="false"/>
-            <Property name="text" type="java.lang.String" value="1"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="txtCli">
           <Properties>
             <Property name="editable" type="boolean" value="false"/>
-            <Property name="text" type="java.lang.String" value="Bruno Viana"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JButton" name="btnSelectProd">

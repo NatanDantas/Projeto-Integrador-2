@@ -34,8 +34,8 @@ public class DetalheVendaDAO {
             //Passo 2 - DriverManager para abrir a conexão
             String URL = "jdbc:mysql://localhost:3306/perfumariabd?useTimezone=true&serverTimezone=UTC&useSSL=false";
             
-            //conexao = DriverManager.getConnection(URL, "root", "");
-            conexao = DriverManager.getConnection(URL, "root", "Br@15687899");
+            conexao = DriverManager.getConnection(URL, "root", "");
+            //conexao = DriverManager.getConnection(URL, "root", "Br@15687899");
             //conexao = GerenciadorConexao.abrirConexao();
             
             for(int i = 0; i < dv.size(); i++){

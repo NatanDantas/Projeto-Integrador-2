@@ -24,20 +24,20 @@
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
-              <Component id="jScrollPane1" min="-2" pref="286" max="-2" attributes="0"/>
-              <EmptySpace max="-2" attributes="0"/>
+              <Component id="jScrollPane1" pref="370" max="32767" attributes="0"/>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
               <Component id="btnselect" min="-2" pref="103" max="-2" attributes="0"/>
-              <EmptySpace min="0" pref="14" max="32767" attributes="0"/>
+              <EmptySpace min="-2" pref="16" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Component id="jScrollPane1" alignment="0" pref="0" max="32767" attributes="0"/>
+          <Component id="jScrollPane1" alignment="0" pref="300" max="32767" attributes="0"/>
           <Group type="102" alignment="0" attributes="0">
-              <EmptySpace min="-2" pref="68" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="78" max="-2" attributes="0"/>
               <Component id="btnselect" min="-2" pref="44" max="-2" attributes="0"/>
-              <EmptySpace pref="188" max="32767" attributes="0"/>
+              <EmptySpace max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -53,9 +53,10 @@
         <Component class="javax.swing.JTable" name="tblProd">
           <Properties>
             <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-              <Table columnCount="2" rowCount="0">
+              <Table columnCount="3" rowCount="0">
                 <Column editable="true" title="ID Cliente" type="java.lang.Object"/>
                 <Column editable="true" title="Nome" type="java.lang.Object"/>
+                <Column editable="true" title="Valor" type="java.lang.Object"/>
               </Table>
             </Property>
           </Properties>

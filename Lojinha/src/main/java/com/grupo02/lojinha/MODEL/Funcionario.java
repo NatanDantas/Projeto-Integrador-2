@@ -12,6 +12,7 @@ package com.grupo02.lojinha.MODEL;
 public class Funcionario {
     private int idFunc;
     private String nomeFunc;
+    private String cpf;
     private String telefoneFunc;
     private String celularFunc;
     private String cargo;
@@ -39,10 +40,6 @@ public class Funcionario {
         return celularFunc;
     }
 
-    public String getCargo() {
-        return cargo;
-    }
-
     public String getLogin() {
         return login;
     }
@@ -67,10 +64,6 @@ public class Funcionario {
         this.celularFunc = celularFunc;
     }
 
-    public void setCargo(String cargo) {
-        this.cargo = cargo;
-    }
-
     public void setLogin(String login) {
         this.login = login;
     }
@@ -85,6 +78,22 @@ public class Funcionario {
 
     public void setEndereco(Endereco endereco) {
         this.endereco = endereco;
+    }
+
+    public String getCpf() {
+        return cpf;
+    }
+
+    public void setCpf(String cpf) {
+        this.cpf = cpf;
+    }
+
+    public String getCargo() {
+        return cargo;
+    }
+
+    public void setCargo(String cargo) {
+        this.cargo = cargo;
     }
     
 }

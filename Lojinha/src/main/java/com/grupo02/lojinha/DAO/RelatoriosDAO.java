@@ -37,8 +37,8 @@ public class RelatoriosDAO {
             //Passo 2 - DriverManager para abrir a conexão
             String URL = "jdbc:mysql://localhost:3306/perfumariabd?allowPublicKeyRetrieval=true&useSSL=false?useTimezone=true&serverTimezone=UTC&useSSL=false";
             
-            //conexao = DriverManager.getConnection(URL, "root", "");
-            conexao = DriverManager.getConnection(URL, "root", "Br@15687899");
+            conexao = DriverManager.getConnection(URL, "root", "");
+            //conexao = DriverManager.getConnection(URL, "root", "Br@15687899");
             
             //Passo 3 - Executo a instrução SQL
             instrucaoSQL = conexao.prepareStatement("SELECT * FROM Venda");
@@ -55,6 +55,7 @@ public class RelatoriosDAO {
                 v.setIdcli(rs.getInt("id_Cli"));
                 v.setIdfunc(rs.getInt("id_Func"));
                 v.setData(rs.getDate("dtVenda"));
+                v.setValorTotal(rs.getDouble("valorTotal"));
                 listaVendas.add(v);
             }
             
@@ -97,8 +98,8 @@ public class RelatoriosDAO {
             //Passo 2 - DriverManager para abrir a conexão
             String URL = "jdbc:mysql://localhost:3306/perfumariabd?allowPublicKeyRetrieval=true&useSSL=false?useTimezone=true&serverTimezone=UTC&useSSL=false";
             
-            //conexao = DriverManager.getConnection(URL, "root", "");
-            conexao = DriverManager.getConnection(URL, "root", "Br@15687899");
+            conexao = DriverManager.getConnection(URL, "root", "");
+            //conexao = DriverManager.getConnection(URL, "root", "Br@15687899");
             
             //Passo 3 - Executo a instrução SQL
             instrucaoSQL = conexao.prepareStatement("SELECT * FROM Venda WHERE dtVenda BETWEEN ? AND ?");
@@ -116,6 +117,7 @@ public class RelatoriosDAO {
                 v.setIdcli(rs.getInt("id_Cli"));
                 v.setIdfunc(rs.getInt("id_Func"));
                 v.setData(rs.getDate("dtVenda"));
+                v.setValorTotal(rs.getDouble("valorTotal"));
                 listaVendas.add(v);
             }
             
@@ -158,8 +160,8 @@ public class RelatoriosDAO {
             //Passo 2 - DriverManager para abrir a conexão
             String URL = "jdbc:mysql://localhost:3306/perfumariabd?allowPublicKeyRetrieval=true&useSSL=false?useTimezone=true&serverTimezone=UTC&useSSL=false";
             
-            //conexao = DriverManager.getConnection(URL, "root", "");
-            conexao = DriverManager.getConnection(URL, "root", "Br@15687899");
+            conexao = DriverManager.getConnection(URL, "root", "");
+            //conexao = DriverManager.getConnection(URL, "root", "Br@15687899");
             
             //Passo 3 - Executo a instrução SQL
             instrucaoSQL = conexao.prepareStatement("SELECT * FROM DetalheVenda WHERE id_venda = ?");

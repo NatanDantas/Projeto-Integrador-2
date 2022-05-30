@@ -39,13 +39,13 @@ public class VendaDAO {
             //Passo 2 - DriverManager para abrir a conexão
             String URL = "jdbc:mysql://localhost:3306/perfumariabd?useTimezone=true&serverTimezone=UTC&useSSL=false";
             
-            //conexao = DriverManager.getConnection(URL, "root", "");
-            conexao = DriverManager.getConnection(URL, "root", "Br@15687899");
+            conexao = DriverManager.getConnection(URL, "root", "");
+            //conexao = DriverManager.getConnection(URL, "root", "Br@15687899");
             //conexao = GerenciadorConexao.abrirConexao();
             
             
             //Passo 3 - Executar uma instrução SQL
-            instrucaoSQL = conexao.prepareStatement("INSERT INTO Venda (id_Cli,id_Func,dtVenda) VALUES(?, ?, ?)"
+            instrucaoSQL = conexao.prepareStatement("INSERT INTO Venda (id_Cli,id_Func,dtVenda,valorTotal) VALUES(?, ?, ?, ?)"
                                                     , Statement.RETURN_GENERATED_KEYS);
             
             //Tenta estabeler a conexão com o SGBD e cria comando a ser executado conexão
@@ -60,6 +60,7 @@ public class VendaDAO {
             instrucaoSQL.setInt(1,v.getIdcli());
             instrucaoSQL.setInt(2,v.getIdcli());
             instrucaoSQL.setDate(3,sqlDate);
+            instrucaoSQL.setDouble(4,v.getValorTotal());
             
             //Executar a instrução SQL
             int linhasAfetadas = instrucaoSQL.executeUpdate();

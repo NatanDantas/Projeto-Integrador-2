@@ -6,9 +6,13 @@ package com.grupo02.lojinha;
 
 
 import com.grupo02.lojinha.DAO.EnderecoDAO;
+import com.grupo02.lojinha.DAO.FuncionarioDAO;
 import com.grupo02.lojinha.MODEL.Endereco;
+import com.grupo02.lojinha.MODEL.Funcionario;
 import com.grupo02.lojinha.UTIL.validaTela;
+import java.util.ArrayList;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 /**
  *
  * @author jose.ncdantas
@@ -23,6 +27,7 @@ public class TelaCadFuncionario extends javax.swing.JFrame {
      */
     public TelaCadFuncionario() {
         initComponents();
+        carregaTable();
     }
 
     /**
@@ -57,18 +62,20 @@ public class TelaCadFuncionario extends javax.swing.JFrame {
         btnSalvar = new javax.swing.JButton();
         jPanel5 = new javax.swing.JPanel();
         jLabel9 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        cbmCargo = new javax.swing.JComboBox<>();
         jLabel11 = new javax.swing.JLabel();
         txtLogin = new javax.swing.JTextField();
         jLabel12 = new javax.swing.JLabel();
-        txtSenha = new javax.swing.JPasswordField();
+        txtSenha = new javax.swing.JTextField();
         jPanel3 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTable2 = new javax.swing.JTable();
+        tblFunc = new javax.swing.JTable();
         jPanel6 = new javax.swing.JPanel();
         jLabel10 = new javax.swing.JLabel();
-        jTextField8 = new javax.swing.JTextField();
-        jButton3 = new javax.swing.JButton();
+        txtFiltro = new javax.swing.JTextField();
+        btnFiltro = new javax.swing.JButton();
+        btnEditar = new javax.swing.JButton();
+        btnDeletar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -111,7 +118,7 @@ public class TelaCadFuncionario extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(txtTelefone)
                     .addComponent(txtCelular))
-                .addContainerGap(85, Short.MAX_VALUE))
+                .addContainerGap(221, Short.MAX_VALUE))
         );
 
         jPanel1Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {txtCPF, txtCelular, txtNome, txtTelefone});
@@ -177,12 +184,12 @@ public class TelaCadFuncionario extends javax.swing.JFrame {
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addComponent(txtCEP, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(0, 257, Short.MAX_VALUE))
-                            .addComponent(txtRua))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 21, Short.MAX_VALUE)
-                .addComponent(jLabel6)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txtNum, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                            .addComponent(txtRua))
+                        .addGap(29, 29, 29)
+                        .addComponent(jLabel6)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtNum, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(132, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -215,7 +222,7 @@ public class TelaCadFuncionario extends javax.swing.JFrame {
 
         jLabel9.setText("Cargo:");
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Vendedor", "RH", "Financeiro" }));
+        cbmCargo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Vendedor", "RH", "Financeiro" }));
 
         jLabel11.setText("Login:");
 
@@ -232,13 +239,13 @@ public class TelaCadFuncionario extends javax.swing.JFrame {
                     .addGroup(jPanel5Layout.createSequentialGroup()
                         .addComponent(jLabel9)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(cbmCargo, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(37, 37, 37)
                         .addComponent(jLabel11)))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(txtLogin)
-                    .addComponent(txtSenha, javax.swing.GroupLayout.DEFAULT_SIZE, 145, Short.MAX_VALUE))
+                    .addComponent(txtLogin, javax.swing.GroupLayout.DEFAULT_SIZE, 145, Short.MAX_VALUE)
+                    .addComponent(txtSenha))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel5Layout.setVerticalGroup(
@@ -249,7 +256,7 @@ public class TelaCadFuncionario extends javax.swing.JFrame {
                         .addGap(19, 19, 19)
                         .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel9)
-                            .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(cbmCargo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
                         .addContainerGap()
                         .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -259,7 +266,7 @@ public class TelaCadFuncionario extends javax.swing.JFrame {
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel12)
                     .addComponent(txtSenha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(9, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
@@ -294,35 +301,32 @@ public class TelaCadFuncionario extends javax.swing.JFrame {
 
         jTabbedPane1.addTab("Cadastro", jPanel4);
 
-        jTable2.setModel(new javax.swing.table.DefaultTableModel(
+        tblFunc.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null}
+
             },
             new String [] {
-                "Nome:", "CPF:", "Telefone:", "Celular", "CEP", "Rua", "Numero", "Bairro", "Editar", "Deletar"
+                "IDFunc", "Nome:", "CPF:", "Telefone:", "Celular", "Cargo", "Login", "Senha", "CEP", "Rua", "Numero", "Bairro"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false, false, false, false
+                false, false, false, false, false, false, false, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane2.setViewportView(jTable2);
+        jScrollPane2.setViewportView(tblFunc);
 
         jPanel6.setBorder(javax.swing.BorderFactory.createTitledBorder("Filtro"));
 
         jLabel10.setText("Nome:");
 
-        jButton3.setText("Filtrar");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        btnFiltro.setText("Filtrar/Atualizar");
+        btnFiltro.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                btnFiltroActionPerformed(evt);
             }
         });
 
@@ -334,12 +338,10 @@ public class TelaCadFuncionario extends javax.swing.JFrame {
                 .addGap(32, 32, 32)
                 .addComponent(jLabel10)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jTextField8, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(265, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton3)
-                .addGap(18, 18, 18))
+                .addComponent(txtFiltro, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(40, 40, 40)
+                .addComponent(btnFiltro, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel6Layout.setVerticalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -347,11 +349,24 @@ public class TelaCadFuncionario extends javax.swing.JFrame {
                 .addGap(28, 28, 28)
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel10)
-                    .addComponent(jTextField8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton3)
-                .addGap(23, 23, 23))
+                    .addComponent(txtFiltro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnFiltro))
+                .addContainerGap(33, Short.MAX_VALUE))
         );
+
+        btnEditar.setText("Editar");
+        btnEditar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEditarActionPerformed(evt);
+            }
+        });
+
+        btnDeletar.setText("Deletar");
+        btnDeletar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDeletarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -359,19 +374,33 @@ public class TelaCadFuncionario extends javax.swing.JFrame {
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 589, Short.MAX_VALUE)
+                        .addGap(15, 15, 15)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(btnDeletar, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(btnEditar, javax.swing.GroupLayout.Alignment.TRAILING))
+                        .addGap(1, 1, 1)))
                 .addContainerGap())
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 36, Short.MAX_VALUE)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 284, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(20, 20, 20))
+                .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 37, Short.MAX_VALUE)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 284, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(20, 20, 20))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGap(104, 104, 104)
+                        .addComponent(btnEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnDeletar, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
 
         jTabbedPane1.addTab("Consulta", jPanel3);
@@ -398,7 +427,53 @@ public class TelaCadFuncionario extends javax.swing.JFrame {
 
     private void btnSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarActionPerformed
         if(camposValidos()){
-            
+           if(!(edicao)){
+                Endereco e = new Endereco();
+                e.setCep(txtCEP.getText());
+                e.setRua(txtRua.getText());
+                e.setBairro(txtBairro.getText());
+                e.setNum(Integer.parseInt(txtNum.getText()));
+
+                Funcionario c = new Funcionario();
+                c.setNomeFunc(txtNome.getText());
+                c.setCpf(txtCPF.getText());
+                c.setTelefoneFunc(txtTelefone.getText());
+                c.setCelularFunc(txtCelular.getText());
+                c.setCargo(cbmCargo.getSelectedItem().toString());
+                c.setLogin(txtLogin.getText());
+                c.setSenha(txtSenha.getText());
+                c.setEndereco(e);
+
+                boolean enderecoSalvo = EnderecoDAO.salvar(e);
+                if(enderecoSalvo)
+                    if(FuncionarioDAO.salvar(c))
+                        JOptionPane.showMessageDialog(this, "Cliente Salvo Com Sucesso","Sucesso",JOptionPane.INFORMATION_MESSAGE);
+            }else{
+                Endereco e = new Endereco();
+                e.setCep(txtCEP.getText());
+                e.setRua(txtRua.getText());
+                e.setBairro(txtBairro.getText());
+                e.setNum(Integer.parseInt(txtNum.getText()));
+
+                Funcionario c = new Funcionario();
+                c.setIdFunc(idedicao);
+                c.setNomeFunc(txtNome.getText());
+                c.setCpf(txtCPF.getText());
+                c.setTelefoneFunc(txtTelefone.getText());
+                c.setCelularFunc(txtCelular.getText());
+                c.setCargo(cbmCargo.getSelectedItem().toString());
+                c.setLogin(txtLogin.getText());
+                c.setSenha(txtSenha.getText());
+                c.setEndereco(e);
+                
+                if(FuncionarioDAO.atualizar(c)){
+                    JOptionPane.showMessageDialog(this, "Cliente Editado Com Sucesso","Sucesso",JOptionPane.INFORMATION_MESSAGE);
+                    btnSalvar.setText("Salvar");
+                    edicao = false;
+                    clearCampos();
+                }
+                
+            } 
                
             
         }else{
@@ -406,9 +481,41 @@ public class TelaCadFuncionario extends javax.swing.JFrame {
         } 
     }//GEN-LAST:event_btnSalvarActionPerformed
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton3ActionPerformed
+    private void btnFiltroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFiltroActionPerformed
+        if(txtFiltro.getText().equals("")){
+            clearTable();
+            carregaTable(); 
+        }else{
+            clearTable();
+            carregaTable(txtFiltro.getText());
+        }
+    }//GEN-LAST:event_btnFiltroActionPerformed
+
+    private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
+        DefaultTableModel model = (DefaultTableModel) tblFunc.getModel();
+        idedicao = (int)model.getValueAt(tblFunc.getSelectedRow(), 0);
+        txtNome.setText((String)model.getValueAt(tblFunc.getSelectedRow(), 1));
+        txtCPF.setText((String)model.getValueAt(tblFunc.getSelectedRow(), 2));
+        txtTelefone.setText((String)model.getValueAt(tblFunc.getSelectedRow(), 3));
+        txtCelular.setText((String)model.getValueAt(tblFunc.getSelectedRow(), 4));
+        txtLogin.setText((String)model.getValueAt(tblFunc.getSelectedRow(), 6));
+        txtSenha.setText((String)model.getValueAt(tblFunc.getSelectedRow(), 7));
+        txtCEP.setText((String)model.getValueAt(tblFunc.getSelectedRow(), 8));
+        txtRua.setText((String)model.getValueAt(tblFunc.getSelectedRow(), 9));
+        txtNum.setText("" + model.getValueAt(tblFunc.getSelectedRow(), 10));
+        txtBairro.setText((String)model.getValueAt(tblFunc.getSelectedRow(), 11));
+        
+        btnSalvar.setText("Editar");
+        edicao = true;
+        jTabbedPane1.setSelectedIndex(0);   
+    }//GEN-LAST:event_btnEditarActionPerformed
+
+    private void btnDeletarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeletarActionPerformed
+        DefaultTableModel model = (DefaultTableModel) tblFunc.getModel();      
+        int idFunc = (int)model.getValueAt(tblFunc.getSelectedRow(), 0);
+        FuncionarioDAO.excluir(idFunc);
+        model.removeRow(tblFunc.getSelectedRow());
+    }//GEN-LAST:event_btnDeletarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -445,6 +552,55 @@ public class TelaCadFuncionario extends javax.swing.JFrame {
         });
     }
     
+    public final void carregaTable(){
+        DefaultTableModel model = (DefaultTableModel) tblFunc.getModel();
+        ArrayList<Funcionario> lstComp = FuncionarioDAO.consultarFuncs();
+        Object dadoLinha[] = new Object[12];
+        for(int i = 0; i < lstComp.size() ; i++){ 
+            dadoLinha[0] = lstComp.get(i).getIdFunc();
+            dadoLinha[1] = lstComp.get(i).getNomeFunc();
+            dadoLinha[2] = lstComp.get(i).getCpf();
+            dadoLinha[3] = lstComp.get(i).getTelefoneFunc();
+            dadoLinha[4] = lstComp.get(i).getCelularFunc();
+            dadoLinha[5] = lstComp.get(i).getCargo();
+            dadoLinha[6] = lstComp.get(i).getLogin();
+            dadoLinha[7] = lstComp.get(i).getSenha();
+            dadoLinha[8] = lstComp.get(i).getEndereco().getCep();
+            dadoLinha[9] = lstComp.get(i).getEndereco().getRua();
+            dadoLinha[10] = lstComp.get(i).getEndereco().getNum();
+            dadoLinha[11] = lstComp.get(i).getEndereco().getBairro();
+            model.addRow(dadoLinha);
+        }
+    }
+    
+    public final void carregaTable(String nm){
+        DefaultTableModel model = (DefaultTableModel) tblFunc.getModel();
+        ArrayList<Funcionario> lstComp = FuncionarioDAO.consultarFuncs(nm);
+        Object dadoLinha[] = new Object[12];
+        for(int i = 0; i < lstComp.size() ; i++){ 
+            dadoLinha[0] = lstComp.get(i).getIdFunc();
+            dadoLinha[1] = lstComp.get(i).getNomeFunc();
+            dadoLinha[2] = lstComp.get(i).getCpf();
+            dadoLinha[3] = lstComp.get(i).getTelefoneFunc();
+            dadoLinha[4] = lstComp.get(i).getCelularFunc();
+            dadoLinha[5] = lstComp.get(i).getCargo();
+            dadoLinha[6] = lstComp.get(i).getLogin();
+            dadoLinha[7] = lstComp.get(i).getSenha();
+            dadoLinha[8] = lstComp.get(i).getEndereco().getCep();
+            dadoLinha[9] = lstComp.get(i).getEndereco().getRua();
+            dadoLinha[10] = lstComp.get(i).getEndereco().getNum();
+            dadoLinha[11] = lstComp.get(i).getEndereco().getBairro();
+            model.addRow(dadoLinha);
+        }
+    }
+    
+    public void clearTable(){
+        DefaultTableModel model = (DefaultTableModel) tblFunc.getModel();
+        while(model.getRowCount() > 0){
+            model.removeRow(0);
+        }
+    }
+    
     public boolean camposValidos(){
         int erros = 0;
         //DADOS PESSOAIS
@@ -456,7 +612,11 @@ public class TelaCadFuncionario extends javax.swing.JFrame {
             erros++;
         if(!(validaTela.authanticateNumber(txtCelular)))
             erros++;
-        
+        //Login
+        if(validaTela.isEmpty(txtLogin))
+            erros++;
+        if(validaTela.isEmpty(txtSenha))
+            erros++;  
         //Endereço
         if(validaTela.isEmpty(txtCEP))
             erros++;
@@ -472,11 +632,25 @@ public class TelaCadFuncionario extends javax.swing.JFrame {
    
         return false;
     }
+    public void clearCampos(){
+        txtNome.setText("");
+        txtCPF.setText("");
+        txtTelefone.setText("");
+        txtCelular.setText("");
+        txtLogin.setText("");
+        txtSenha.setText("");
+        txtCEP.setText("");
+        txtRua.setText("");
+        txtBairro.setText("");
+        txtNum.setText("");
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnDeletar;
+    private javax.swing.JButton btnEditar;
+    private javax.swing.JButton btnFiltro;
     private javax.swing.JButton btnSalvar;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JComboBox<String> jComboBox1;
+    private javax.swing.JComboBox<String> cbmCargo;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -497,21 +671,18 @@ public class TelaCadFuncionario extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel6;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTabbedPane jTabbedPane1;
-    private javax.swing.JTable jTable2;
-    private javax.swing.JTextField jTextField8;
+    private javax.swing.JTable tblFunc;
     private javax.swing.JTextField txtBairro;
     private javax.swing.JFormattedTextField txtCEP;
     private javax.swing.JFormattedTextField txtCPF;
     private javax.swing.JTextField txtCelular;
+    private javax.swing.JTextField txtFiltro;
     private javax.swing.JTextField txtLogin;
     private javax.swing.JTextField txtNome;
     private javax.swing.JTextField txtNum;
     private javax.swing.JTextField txtRua;
-    private javax.swing.JPasswordField txtSenha;
+    private javax.swing.JTextField txtSenha;
     private javax.swing.JTextField txtTelefone;
     // End of variables declaration//GEN-END:variables
 
-    private void clearCampos() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
 }
